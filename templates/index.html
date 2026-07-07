@@ -3,3048 +3,472 @@
 <head>
 <meta charset="UTF-8"/>
 <meta name="viewport" content="width=device-width,initial-scale=1"/>
-<title>SciMind — AI Scientific Research Intelligence</title>
-
-<!-- Google Fonts -->
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Poppins:wght@600;700;800&family=Roboto:wght@300;400;500&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet"/>
-<!-- Bootstrap 5.3 -->
-<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"/>
-<!-- Font Awesome 6 -->
-<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" rel="stylesheet"/>
-
-<style>
-/* ═══════════════════════════════════════════════════════════════
-   SCIMIND — WORLD-CLASS RESEARCH PLATFORM STYLESHEET
-   ═══════════════════════════════════════════════════════════════ */
-
-/* ── Custom Properties ── */
-:root {
-  --pri:        #1a237e;
-  --pri-dark:   #0d1b6e;
-  --sec:        #0d47a1;
-  --accent:     #00b0ff;
-  --accent2:    #7c4dff;
-  --bg:         #f8faff;
-  --bg-card:    #ffffff;
-  --bg-input:   #f0f4ff;
-  --text:       #1a1a2e;
-  --text-muted: #546e7a;
-  --border:     #e3e8f0;
-  --success:    #00c853;
-  --warning:    #ffab00;
-  --danger:     #ff5252;
-  --shadow-sm:  0 2px 8px rgba(26,35,126,.08);
-  --shadow-md:  0 6px 24px rgba(26,35,126,.12);
-  --shadow-lg:  0 16px 48px rgba(26,35,126,.18);
-  --radius:     12px;
-  --radius-sm:  8px;
-  --trans:      .22s cubic-bezier(.4,0,.2,1);
-
-  /* domain colours */
-  --physics:   #7c4dff;
-  --chemistry: #00bfa5;
-  --biology:   #00897b;
-  --cs:        #1565c0;
-  --space:     #283593;
-  --neuro:     #e91e8c;
-  --earth:     #558b2f;
-  --math:      #e65100;
-  --env:       #2e7d32;
-  --eng:       #37474f;
-}
-
-[data-theme="dark"] {
-  --bg:        #0a0f2e;
-  --bg-card:   #0f1540;
-  --bg-input:  #141a4a;
-  --text:      #e8eaf6;
-  --text-muted:#9fa8da;
-  --border:    rgba(255,255,255,.08);
-  --shadow-sm: 0 2px 8px rgba(0,0,0,.4);
-  --shadow-md: 0 6px 24px rgba(0,0,0,.5);
-  --shadow-lg: 0 16px 48px rgba(0,0,0,.6);
-}
-
-/* ── Reset & Base ── */
-*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
-html{scroll-behavior:smooth;font-size:15px}
-body{
-  font-family:'Roboto',system-ui,sans-serif;
-  background:var(--bg);
-  color:var(--text);
-  line-height:1.65;
-  transition:background var(--trans),color var(--trans);
-  overflow-x:hidden;
-}
-::-webkit-scrollbar{width:5px;height:5px}
-::-webkit-scrollbar-track{background:transparent}
-::-webkit-scrollbar-thumb{background:var(--accent);border-radius:99px}
-
-/* ── Page Fade In ── */
-@keyframes pageFadeIn{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:translateY(0)}}
-.page-fade{animation:pageFadeIn .55s ease forwards}
-
-/* ════════════════════════════════════
-   NAVBAR
-   ════════════════════════════════════ */
-.sci-nav{
-  position:fixed;top:0;left:0;right:0;z-index:2000;
-  background:rgba(10,15,46,.95);
-  backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);
-  border-bottom:1px solid rgba(255,255,255,.07);
-  height:62px;
-  transition:box-shadow var(--trans);
-}
-.sci-nav.scrolled{box-shadow:0 4px 24px rgba(0,0,0,.4)}
-.nav-inner{
-  max-width:1480px;margin:0 auto;
-  height:62px;
-  display:flex;align-items:center;gap:24px;
-  padding:0 24px;
-}
-.nav-logo{
-  display:flex;align-items:center;gap:10px;
-  text-decoration:none;flex-shrink:0;
-}
-.logo-icon{
-  width:36px;height:36px;
-  background:linear-gradient(135deg,var(--accent),var(--accent2));
-  border-radius:9px;
-  display:flex;align-items:center;justify-content:center;
-  font-size:17px;color:#fff;
-  box-shadow:0 0 16px rgba(0,176,255,.35);
-}
-.logo-text{
-  font-family:'Poppins',sans-serif;
-  font-size:19px;font-weight:700;
-  color:#fff;letter-spacing:-.3px;
-}
-.logo-text span{color:var(--accent)}
-.nav-links{
-  display:flex;align-items:center;gap:4px;
-  list-style:none;margin:0 auto;
-}
-.nav-links a{
-  color:rgba(255,255,255,.72);
-  font-size:13.5px;font-weight:500;
-  padding:6px 14px;border-radius:7px;
-  text-decoration:none;
-  transition:all var(--trans);
-}
-.nav-links a:hover,.nav-links a.active{
-  color:#fff;background:rgba(255,255,255,.1);
-}
-.nav-right{display:flex;align-items:center;gap:10px;flex-shrink:0}
-.watsonx-badge{
-  display:flex;align-items:center;gap:6px;
-  background:linear-gradient(135deg,rgba(0,176,255,.15),rgba(124,77,255,.15));
-  border:1px solid rgba(0,176,255,.3);
-  border-radius:99px;
-  padding:4px 12px;
-  font-size:11.5px;font-weight:600;
-  color:var(--accent);
-  white-space:nowrap;
-}
-.watsonx-badge i{font-size:13px}
-.theme-btn{
-  width:36px;height:36px;
-  background:rgba(255,255,255,.08);
-  border:1px solid rgba(255,255,255,.12);
-  border-radius:8px;
-  color:#fff;font-size:14px;
-  display:flex;align-items:center;justify-content:center;
-  cursor:pointer;transition:all var(--trans);
-}
-.theme-btn:hover{background:rgba(255,255,255,.15);border-color:var(--accent)}
-
-/* ════════════════════════════════════
-   HERO SECTION
-   ════════════════════════════════════ */
-.hero{
-  min-height:100vh;
-  background:linear-gradient(135deg,#0a0f2e 0%,#1a237e 50%,#0d1b5e 100%);
-  display:flex;align-items:center;justify-content:center;
-  position:relative;overflow:hidden;
-  padding:80px 24px 60px;
-}
-/* Particle canvas */
-#particleCanvas{
-  position:absolute;inset:0;width:100%;height:100%;
-  pointer-events:none;opacity:.55;
-}
-/* Radial glow */
-.hero::before{
-  content:'';position:absolute;
-  width:900px;height:900px;
-  background:radial-gradient(circle,rgba(0,176,255,.12) 0%,transparent 70%);
-  top:50%;left:50%;transform:translate(-50%,-50%);
-  pointer-events:none;
-}
-.hero-content{
-  position:relative;z-index:10;
-  text-align:center;max-width:820px;margin:0 auto;
-}
-.hero-eyebrow{
-  display:inline-flex;align-items:center;gap:8px;
-  background:rgba(0,176,255,.1);
-  border:1px solid rgba(0,176,255,.25);
-  border-radius:99px;
-  padding:5px 16px;
-  font-size:12px;font-weight:600;
-  color:var(--accent);letter-spacing:.8px;
-  text-transform:uppercase;margin-bottom:20px;
-}
-.hero-title{
-  font-family:'Poppins',sans-serif;
-  font-size:clamp(32px,5.5vw,60px);
-  font-weight:800;
-  color:#fff;
-  line-height:1.1;
-  letter-spacing:-1.5px;
-  margin-bottom:12px;
-}
-.hero-title span{
-  background:linear-gradient(90deg,var(--accent),#7c4dff);
-  -webkit-background-clip:text;-webkit-text-fill-color:transparent;
-  background-clip:text;
-}
-.typewriter-wrap{
-  font-size:clamp(16px,2vw,20px);
-  color:rgba(255,255,255,.7);
-  margin-bottom:36px;
-  min-height:32px;
-}
-#typewriter{border-right:2px solid var(--accent);padding-right:3px}
-@keyframes blink{0%,100%{opacity:1}50%{opacity:0}}
-.cursor{animation:blink 1s step-end infinite}
-.hero-cta{display:flex;gap:14px;justify-content:center;flex-wrap:wrap;margin-bottom:48px}
-.btn-hero-primary{
-  background:linear-gradient(135deg,var(--accent),#0077b6);
-  color:#fff;
-  border:none;border-radius:10px;
-  padding:13px 32px;
-  font-size:15px;font-weight:600;
-  cursor:pointer;
-  transition:all var(--trans);
-  box-shadow:0 4px 20px rgba(0,176,255,.4);
-  position:relative;overflow:hidden;
-}
-.btn-hero-primary:hover{transform:translateY(-2px);box-shadow:0 8px 28px rgba(0,176,255,.5)}
-.btn-hero-secondary{
-  background:rgba(255,255,255,.08);
-  color:#fff;
-  border:1px solid rgba(255,255,255,.25);
-  border-radius:10px;
-  padding:13px 32px;
-  font-size:15px;font-weight:600;
-  cursor:pointer;
-  transition:all var(--trans);
-  backdrop-filter:blur(8px);
-}
-.btn-hero-secondary:hover{background:rgba(255,255,255,.15);border-color:var(--accent);color:var(--accent)}
-.hero-stats{
-  display:flex;justify-content:center;gap:40px;flex-wrap:wrap;
-}
-.hero-stat{text-align:center}
-.hero-stat .num{
-  font-family:'Poppins',sans-serif;
-  font-size:28px;font-weight:700;
-  color:#fff;display:block;
-}
-.hero-stat .lbl{font-size:12px;color:rgba(255,255,255,.5);letter-spacing:.5px}
-
-/* Scroll indicator */
-.scroll-indicator{
-  position:absolute;bottom:32px;left:50%;transform:translateX(-50%);
-  display:flex;flex-direction:column;align-items:center;gap:6px;
-  color:rgba(255,255,255,.4);font-size:11px;
-  animation:scrollBounce 2s ease-in-out infinite;
-}
-@keyframes scrollBounce{0%,100%{transform:translateX(-50%) translateY(0)}50%{transform:translateX(-50%) translateY(6px)}}
-
-/* ════════════════════════════════════
-   MAIN APP AREA
-   ════════════════════════════════════ */
-.app-section{
-  max-width:1480px;margin:0 auto;
-  padding:32px 20px 60px;
-}
-
-/* Domain Tags Bar */
-.domains-bar{
-  display:flex;align-items:center;gap:8px;
-  flex-wrap:wrap;
-  padding:14px 20px;
-  background:var(--bg-card);
-  border:1px solid var(--border);
-  border-radius:var(--radius);
-  margin-bottom:24px;
-  box-shadow:var(--shadow-sm);
-}
-.domains-label{
-  font-size:11px;font-weight:700;
-  color:var(--text-muted);
-  letter-spacing:.8px;text-transform:uppercase;
-  margin-right:4px;white-space:nowrap;
-}
-.domain-pill{
-  display:inline-flex;align-items:center;gap:5px;
-  padding:4px 13px;border-radius:99px;
-  font-size:12px;font-weight:600;
-  cursor:pointer;transition:all var(--trans);
-  border:1px solid transparent;
-  user-select:none;
-}
-.domain-pill:hover{transform:scale(1.06);filter:brightness(1.1)}
-.domain-pill.active{box-shadow:0 0 0 2px #fff,0 0 0 4px var(--accent)}
-.dp-all    {background:rgba(26,35,126,.12);color:var(--pri);border-color:rgba(26,35,126,.2)}
-.dp-physics{background:rgba(124,77,255,.12);color:var(--physics);border-color:rgba(124,77,255,.2)}
-.dp-chem   {background:rgba(0,191,165,.12);color:var(--chemistry);border-color:rgba(0,191,165,.2)}
-.dp-bio    {background:rgba(0,137,123,.12);color:var(--biology);border-color:rgba(0,137,123,.2)}
-.dp-cs     {background:rgba(21,101,192,.12);color:var(--cs);border-color:rgba(21,101,192,.2)}
-.dp-space  {background:rgba(40,53,147,.12);color:#5c6bc0;border-color:rgba(40,53,147,.2)}
-.dp-neuro  {background:rgba(233,30,140,.12);color:var(--neuro);border-color:rgba(233,30,140,.2)}
-.dp-earth  {background:rgba(85,139,47,.12);color:var(--earth);border-color:rgba(85,139,47,.2)}
-.dp-env    {background:rgba(46,125,50,.12);color:var(--env);border-color:rgba(46,125,50,.2)}
-.dp-eng    {background:rgba(55,71,79,.12);color:var(--eng);border-color:rgba(55,71,79,.2)}
-.dp-math   {background:rgba(230,81,0,.12);color:var(--math);border-color:rgba(230,81,0,.2)}
-
-[data-theme="dark"] .dp-all    {background:rgba(26,35,126,.3);color:#9fa8da}
-[data-theme="dark"] .domain-pill.active{box-shadow:0 0 0 2px var(--bg-card),0 0 0 4px var(--accent)}
-
-/* ════════════════════════════════════
-   LAYOUT GRID
-   ════════════════════════════════════ */
-.app-grid{display:grid;grid-template-columns:280px 1fr;gap:24px}
-@media(max-width:991px){.app-grid{grid-template-columns:1fr}}
-
-/* ════════════════════════════════════
-   SIDEBAR
-   ════════════════════════════════════ */
-.sidebar{
-  position:sticky;top:78px;
-  height:calc(100vh - 90px);
-  overflow-y:auto;
-  display:flex;flex-direction:column;gap:6px;
-  padding-right:4px;
-}
-.sidebar::-webkit-scrollbar{width:3px}
-.sidebar-section-label{
-  font-size:10px;font-weight:700;
-  letter-spacing:1.2px;
-  color:var(--text-muted);
-  text-transform:uppercase;
-  padding:10px 12px 4px;
-}
-.tool-card{
-  display:flex;align-items:center;gap:12px;
-  padding:11px 14px;
-  background:var(--bg-card);
-  border:1px solid var(--border);
-  border-radius:var(--radius-sm);
-  cursor:pointer;
-  transition:all var(--trans);
-  text-decoration:none;
-  position:relative;
-  overflow:hidden;
-}
-.tool-card::before{
-  content:'';
-  position:absolute;inset:0;
-  background:linear-gradient(135deg,rgba(0,176,255,.08),rgba(124,77,255,.08));
-  opacity:0;transition:opacity var(--trans);
-}
-.tool-card:hover{
-  border-color:rgba(0,176,255,.35);
-  transform:translateX(3px);
-  box-shadow:0 0 0 1px rgba(0,176,255,.15),var(--shadow-sm);
-}
-.tool-card:hover::before{opacity:1}
-.tool-card.active{
-  background:linear-gradient(135deg,var(--pri),var(--sec));
-  border-color:var(--sec);
-  box-shadow:0 4px 16px rgba(13,71,161,.4);
-  transform:translateX(3px);
-}
-.tool-card.active .tool-name{color:#fff}
-.tool-card.active .tool-desc{color:rgba(255,255,255,.65)}
-.tool-icon{
-  width:38px;height:38px;
-  border-radius:9px;
-  display:flex;align-items:center;justify-content:center;
-  font-size:16px;flex-shrink:0;
-  transition:all var(--trans);
-}
-.tool-card.active .tool-icon{background:rgba(255,255,255,.15);color:#fff}
-.ti-chat   {background:rgba(0,176,255,.1);color:#00b0ff}
-.ti-sum    {background:rgba(0,200,83,.1);color:#00c853}
-.ti-cit    {background:rgba(124,77,255,.1);color:#7c4dff}
-.ti-lit    {background:rgba(255,171,0,.1);color:#ffab00}
-.ti-hyp    {background:rgba(255,82,82,.1);color:#ff5252}
-.ti-rep    {background:rgba(0,191,165,.1);color:#00bfa5}
-.ti-exp    {background:rgba(233,30,140,.1);color:#e91e8c}
-.ti-expl   {background:rgba(85,139,47,.1);color:#7cb342}
-.ti-cmp    {background:rgba(230,81,0,.1);color:#ff6d00}
-.tool-info{flex:1;min-width:0}
-.tool-name{
-  font-size:13px;font-weight:600;
-  color:var(--text);display:block;
-  white-space:nowrap;overflow:hidden;text-overflow:ellipsis;
-}
-.tool-desc{
-  font-size:11px;color:var(--text-muted);
-  white-space:nowrap;overflow:hidden;text-overflow:ellipsis;
-  display:block;margin-top:1px;
-}
-.tool-arrow{
-  font-size:11px;color:var(--text-muted);
-  opacity:0;transform:translateX(-4px);
-  transition:all var(--trans);flex-shrink:0;
-}
-.tool-card:hover .tool-arrow{opacity:1;transform:translateX(0)}
-.tool-card.active .tool-arrow{opacity:1;color:rgba(255,255,255,.6)}
-
-/* Domain Select in sidebar */
-.domain-select-wrap{padding:0 4px 8px}
-.domain-select-wrap select{
-  background:var(--bg-input);
-  border:1px solid var(--border);
-  color:var(--text);
-  border-radius:var(--radius-sm);
-  font-size:13px;
-  padding:7px 10px;
-  width:100%;
-  transition:border-color var(--trans),box-shadow var(--trans);
-}
-.domain-select-wrap select:focus{
-  outline:none;
-  border-color:var(--accent);
-  box-shadow:0 0 0 3px rgba(0,176,255,.15);
-}
-
-/* ════════════════════════════════════
-   MAIN PANEL
-   ════════════════════════════════════ */
-.main-panel{min-width:0}
-.panel-section{display:none}
-.panel-section.active{
-  display:block;
-  animation:panelIn .3s cubic-bezier(.4,0,.2,1) forwards;
-}
-@keyframes panelIn{
-  from{opacity:0;transform:translateY(10px)}
-  to{opacity:1;transform:translateY(0)}
-}
-
-/* Panel header */
-.panel-hdr{margin-bottom:22px}
-.panel-hdr h2{
-  font-family:'Poppins',sans-serif;
-  font-size:22px;font-weight:700;
-  color:var(--text);
-  display:flex;align-items:center;gap:10px;
-  margin-bottom:4px;
-}
-.panel-hdr h2 i{
-  width:38px;height:38px;
-  background:linear-gradient(135deg,var(--pri),var(--sec));
-  border-radius:9px;
-  display:flex;align-items:center;justify-content:center;
-  color:#fff;font-size:16px;flex-shrink:0;
-}
-.panel-hdr p{font-size:14px;color:var(--text-muted);margin:0}
-
-/* Tool container */
-.tool-container{
-  background:var(--bg-card);
-  border:1px solid var(--border);
-  border-radius:var(--radius);
-  padding:26px;
-  box-shadow:var(--shadow-sm);
-  transition:box-shadow var(--trans);
-}
-.tool-container:hover{box-shadow:var(--shadow-md)}
-
-/* ── Form elements ── */
-.form-group{margin-bottom:18px;position:relative}
-.floating-label{
-  position:relative;
-}
-.floating-label input,
-.floating-label textarea,
-.floating-label select{
-  width:100%;
-  background:var(--bg-input);
-  border:1.5px solid var(--border);
-  border-radius:var(--radius-sm);
-  color:var(--text);
-  font-size:14px;
-  padding:13px 14px 6px;
-  transition:border-color var(--trans),box-shadow var(--trans),background var(--trans);
-  resize:vertical;
-  font-family:'Roboto',sans-serif;
-}
-.floating-label label{
-  position:absolute;
-  top:10px;left:14px;
-  font-size:12px;font-weight:500;
-  color:var(--text-muted);
-  pointer-events:none;
-  transition:all var(--trans);
-  letter-spacing:.2px;
-}
-.floating-label input:focus,
-.floating-label textarea:focus,
-.floating-label select:focus{
-  outline:none;
-  border-color:var(--accent);
-  box-shadow:0 0 0 3px rgba(0,176,255,.12);
-  background:var(--bg-card);
-}
-.floating-label input::placeholder,
-.floating-label textarea::placeholder{color:transparent}
-.floating-label input:focus::placeholder,
-.floating-label textarea:focus::placeholder{color:var(--text-muted)}
-textarea{min-height:110px}
-.char-info{
-  display:flex;justify-content:flex-end;
-  font-size:11px;color:var(--text-muted);
-  margin-top:4px;gap:12px;
-}
-
-/* Standard plain inputs (no floating label) */
-.sci-input{
-  width:100%;
-  background:var(--bg-input);
-  border:1.5px solid var(--border);
-  border-radius:var(--radius-sm);
-  color:var(--text);
-  font-size:14px;
-  padding:10px 14px;
-  transition:all var(--trans);
-}
-.sci-input:focus{outline:none;border-color:var(--accent);box-shadow:0 0 0 3px rgba(0,176,255,.12);background:var(--bg-card)}
-.sci-input::placeholder{color:var(--text-muted)}
-.sci-select{
-  width:100%;
-  background:var(--bg-input);
-  border:1.5px solid var(--border);
-  border-radius:var(--radius-sm);
-  color:var(--text);
-  font-size:14px;
-  padding:10px 14px;
-  transition:all var(--trans);
-  cursor:pointer;
-}
-.sci-select:focus{outline:none;border-color:var(--accent);box-shadow:0 0 0 3px rgba(0,176,255,.12)}
-.sci-label{font-size:12.5px;font-weight:600;color:var(--text-muted);display:block;margin-bottom:6px;letter-spacing:.2px}
-.mono{font-family:'JetBrains Mono',monospace;font-size:13px}
-
-/* Style toggle pills */
-.style-pills{display:flex;gap:6px;flex-wrap:wrap}
-.style-pill{
-  padding:6px 16px;
-  background:var(--bg-input);
-  border:1.5px solid var(--border);
-  border-radius:99px;
-  font-size:12.5px;font-weight:600;
-  color:var(--text-muted);
-  cursor:pointer;transition:all var(--trans);
-  user-select:none;
-}
-.style-pill:hover{border-color:var(--accent);color:var(--accent)}
-.style-pill.active{
-  background:linear-gradient(135deg,var(--pri),var(--sec));
-  border-color:var(--sec);color:#fff;
-  box-shadow:0 2px 10px rgba(13,71,161,.35);
-}
-
-/* ── Buttons ── */
-.btn-primary-sci{
-  background:linear-gradient(135deg,var(--pri),var(--sec));
-  color:#fff;border:none;
-  border-radius:var(--radius-sm);
-  padding:11px 26px;
-  font-size:14px;font-weight:600;
-  cursor:pointer;
-  transition:all var(--trans);
-  position:relative;overflow:hidden;
-  display:inline-flex;align-items:center;gap:8px;
-  box-shadow:0 3px 12px rgba(13,71,161,.3);
-}
-.btn-primary-sci::after{
-  content:'';position:absolute;
-  width:120%;height:120%;
-  background:radial-gradient(circle,rgba(255,255,255,.25) 0%,transparent 60%);
-  top:-10%;left:-10%;
-  opacity:0;transition:opacity var(--trans);
-}
-.btn-primary-sci:hover{
-  transform:translateY(-2px);
-  box-shadow:0 6px 20px rgba(13,71,161,.45);
-}
-.btn-primary-sci:hover::after{opacity:1}
-.btn-primary-sci:active{transform:translateY(0)}
-.btn-primary-sci:disabled{opacity:.5;cursor:not-allowed;transform:none}
-.btn-ghost-sci{
-  background:transparent;
-  border:1.5px solid var(--border);
-  border-radius:var(--radius-sm);
-  color:var(--text-muted);
-  padding:8px 16px;font-size:13px;font-weight:500;
-  cursor:pointer;transition:all var(--trans);
-  display:inline-flex;align-items:center;gap:6px;
-}
-.btn-ghost-sci:hover{border-color:var(--accent);color:var(--accent)}
-.w-full{width:100%}
-
-/* Ripple */
-.ripple{position:relative;overflow:hidden}
-.ripple-effect{
-  position:absolute;border-radius:50%;
-  background:rgba(255,255,255,.35);
-  animation:rippleAnim .55s ease-out forwards;
-  transform:scale(0);pointer-events:none;
-}
-@keyframes rippleAnim{to{transform:scale(4);opacity:0}}
-
-/* ── Chat UI ── */
-.chat-wrap{
-  display:flex;flex-direction:column;
-  height:calc(100vh - 260px);min-height:520px;
-  background:var(--bg-card);
-  border:1px solid var(--border);
-  border-radius:var(--radius);
-  overflow:hidden;
-  box-shadow:var(--shadow-sm);
-}
-.chat-msgs{
-  flex:1;overflow-y:auto;padding:24px;
-  display:flex;flex-direction:column;gap:18px;
-}
-.chat-welcome{
-  text-align:center;padding:48px 20px;
-}
-.welcome-orb{
-  width:76px;height:76px;margin:0 auto 18px;
-  background:linear-gradient(135deg,var(--pri),var(--sec));
-  border-radius:20px;
-  display:flex;align-items:center;justify-content:center;
-  font-size:30px;color:#fff;
-  box-shadow:0 8px 28px rgba(13,71,161,.4);
-}
-.chat-welcome h3{font-family:'Poppins',sans-serif;font-size:20px;font-weight:700;color:var(--text);margin-bottom:8px}
-.chat-welcome p{color:var(--text-muted);font-size:14px;margin-bottom:22px}
-.quick-grid{display:flex;flex-wrap:wrap;gap:8px;justify-content:center;max-width:580px;margin:0 auto}
-.quick-chip{
-  font-size:12.5px;font-weight:500;
-  padding:7px 15px;border-radius:99px;
-  background:var(--bg-input);border:1.5px solid var(--border);
-  color:var(--text-muted);cursor:pointer;
-  transition:all var(--trans);
-}
-.quick-chip:hover{border-color:var(--accent);color:var(--accent);background:rgba(0,176,255,.06)}
-
-/* Bubbles */
-.bubble{display:flex;gap:11px;align-items:flex-start}
-.bubble.user{flex-direction:row-reverse}
-@keyframes bubbleIn{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:translateY(0)}}
-.bubble{animation:bubbleIn .25s ease}
-.bub-avatar{
-  width:36px;height:36px;flex-shrink:0;
-  border-radius:10px;
-  display:flex;align-items:center;justify-content:center;font-size:15px;
-}
-.bub-avatar.ai{background:linear-gradient(135deg,var(--pri),var(--sec));color:#fff;box-shadow:0 3px 12px rgba(13,71,161,.3)}
-.bub-avatar.usr{background:var(--bg-input);border:1.5px solid var(--border);color:var(--text-muted)}
-.bub-body{
-  max-width:74%;
-  background:var(--bg-input);
-  border:1px solid var(--border);
-  border-radius:12px;
-  padding:13px 16px;
-  font-size:14px;line-height:1.72;
-}
-.bubble.user .bub-body{
-  background:linear-gradient(135deg,rgba(26,35,126,.12),rgba(13,71,161,.08));
-  border-color:rgba(26,35,126,.2);
-}
-.bub-content{color:var(--text)}
-.bub-content p:last-child{margin-bottom:0}
-.bub-footer{
-  display:flex;align-items:center;gap:8px;
-  margin-top:7px;justify-content:flex-end;
-}
-.bub-time{font-size:10.5px;color:var(--text-muted)}
-.bub-actions{display:flex;gap:4px}
-.bub-btn{
-  width:24px;height:24px;
-  background:transparent;border:none;
-  color:var(--text-muted);font-size:12px;
-  border-radius:5px;cursor:pointer;
-  transition:all var(--trans);
-  display:flex;align-items:center;justify-content:center;
-}
-.bub-btn:hover{background:var(--bg-card);color:var(--accent)}
-.granite-tag{
-  display:inline-flex;align-items:center;gap:4px;
-  font-size:10px;font-weight:600;
-  background:rgba(0,176,255,.1);
-  border:1px solid rgba(0,176,255,.2);
-  border-radius:99px;padding:2px 7px;
-  color:var(--accent);margin-top:8px;
-}
-
-/* Typing */
-.typing{display:flex;gap:5px;align-items:center;padding:5px 0}
-.typing span{width:7px;height:7px;background:var(--accent);border-radius:50%;animation:tBounce 1.2s ease infinite}
-.typing span:nth-child(2){animation-delay:.15s}
-.typing span:nth-child(3){animation-delay:.3s}
-@keyframes tBounce{0%,80%,100%{transform:scale(.65);opacity:.4}40%{transform:scale(1);opacity:1}}
-
-/* Chat input */
-.chat-input-bar{
-  border-top:1px solid var(--border);
-  padding:14px 18px;background:var(--bg-card);
-}
-.chat-input-row{display:flex;gap:10px;align-items:flex-end}
-.chat-textarea{
-  flex:1;background:var(--bg-input);
-  border:1.5px solid var(--border);
-  border-radius:10px;
-  color:var(--text);font-size:14px;
-  padding:11px 14px;
-  resize:none;min-height:46px;max-height:130px;
-  font-family:'Roboto',sans-serif;
-  transition:border-color var(--trans),box-shadow var(--trans);
-}
-.chat-textarea:focus{outline:none;border-color:var(--accent);box-shadow:0 0 0 3px rgba(0,176,255,.1)}
-.chat-send{
-  width:46px;height:46px;flex-shrink:0;
-  background:linear-gradient(135deg,var(--pri),var(--sec));
-  border:none;border-radius:10px;
-  color:#fff;font-size:17px;
-  cursor:pointer;transition:all var(--trans);
-  display:flex;align-items:center;justify-content:center;
-}
-.chat-send:hover{transform:scale(1.06);box-shadow:0 4px 14px rgba(13,71,161,.4)}
-.chat-bottom{display:flex;justify-content:space-between;align-items:center;margin-top:7px;font-size:11.5px;color:var(--text-muted)}
-
-/* ── Result Area ── */
-.result-card{
-  background:var(--bg-card);
-  border:1px solid var(--border);
-  border-radius:var(--radius);
-  margin-top:18px;
-  overflow:hidden;
-  animation:panelIn .3s ease;
-  box-shadow:var(--shadow-sm);
-}
-.result-topbar{
-  display:flex;align-items:center;justify-content:space-between;
-  padding:10px 16px;
-  background:linear-gradient(135deg,rgba(26,35,126,.07),rgba(13,71,161,.04));
-  border-bottom:1px solid var(--border);
-  flex-wrap:wrap;gap:8px;
-}
-.result-label{
-  font-size:11px;font-weight:700;
-  letter-spacing:1px;color:var(--text-muted);
-  text-transform:uppercase;display:flex;align-items:center;gap:7px;
-}
-.result-label i{color:var(--accent);font-size:13px}
-.result-actions{display:flex;gap:6px}
-.res-btn{
-  display:inline-flex;align-items:center;gap:5px;
-  background:var(--bg-input);
-  border:1px solid var(--border);
-  border-radius:6px;padding:4px 10px;
-  font-size:12px;font-weight:500;
-  color:var(--text-muted);cursor:pointer;
-  transition:all var(--trans);
-}
-.res-btn:hover{border-color:var(--accent);color:var(--accent)}
-.result-body{padding:20px 22px}
-
-/* Markdown styles */
-.md-content{color:var(--text);line-height:1.78;font-size:14.5px}
-.md-content h1,.md-content h2{font-family:'Poppins',sans-serif;color:var(--text);margin:1.2em 0 .5em;font-weight:700}
-.md-content h2{font-size:17px;border-bottom:2px solid var(--border);padding-bottom:6px}
-.md-content h3{font-size:15px;font-weight:600;color:var(--text);margin:1em 0 .4em}
-.md-content p{margin-bottom:.85em}
-.md-content ul,.md-content ol{padding-left:1.5em;margin-bottom:.85em}
-.md-content li{margin-bottom:.3em}
-.md-content strong{color:var(--text);font-weight:600}
-.md-content em{color:var(--text-muted)}
-.md-content code{
-  font-family:'JetBrains Mono',monospace;font-size:12.5px;
-  background:rgba(0,176,255,.1);color:var(--accent);
-  padding:1px 6px;border-radius:4px;
-}
-.md-content pre{
-  background:var(--bg);border:1px solid var(--border);
-  border-radius:var(--radius-sm);padding:16px;
-  overflow-x:auto;margin:1em 0;
-  border-left:3px solid var(--accent);
-}
-.md-content pre code{background:none;padding:0;color:var(--text);font-size:13px}
-.md-content blockquote{
-  border-left:3px solid var(--accent);
-  padding:8px 16px;margin:1em 0;
-  background:rgba(0,176,255,.05);border-radius:0 var(--radius-sm) var(--radius-sm) 0;
-  color:var(--text-muted);
-}
-.md-content table{width:100%;border-collapse:collapse;font-size:13.5px;margin:1em 0}
-.md-content th,.md-content td{border:1px solid var(--border);padding:8px 12px}
-.md-content th{background:var(--bg-input);font-weight:600}
-.md-content hr{border:none;border-top:1px solid var(--border);margin:1.2em 0}
-
-/* VS badge */
-.vs-badge{
-  font-size:15px;font-weight:800;
-  color:var(--accent);
-  background:rgba(0,176,255,.1);
-  border:1.5px solid rgba(0,176,255,.25);
-  border-radius:8px;padding:5px 12px;
-  letter-spacing:1px;
-}
-
-/* Quick topic chips */
-.qtopics{display:flex;flex-wrap:wrap;align-items:center;gap:6px;margin-bottom:14px}
-.qtopic-lbl{font-size:11.5px;font-weight:600;color:var(--text-muted)}
-.qtopic-chip{
-  font-size:12px;font-weight:500;
-  padding:4px 12px;border-radius:99px;
-  background:var(--bg-input);border:1px solid var(--border);
-  color:var(--text-muted);cursor:pointer;transition:all var(--trans);
-}
-.qtopic-chip:hover{border-color:var(--accent);color:var(--accent)}
-
-/* Info note */
-.info-note{
-  display:flex;gap:8px;align-items:flex-start;
-  background:rgba(0,176,255,.06);
-  border:1px solid rgba(0,176,255,.18);
-  border-radius:var(--radius-sm);
-  padding:10px 14px;
-  font-size:12.5px;color:var(--text-muted);
-  margin-bottom:14px;
-}
-.info-note i{color:var(--accent);margin-top:1px;flex-shrink:0}
-
-/* Skeleton loader */
-.skeleton{
-  background:linear-gradient(90deg,var(--bg-input) 25%,var(--border) 50%,var(--bg-input) 75%);
-  background-size:200% 100%;
-  animation:skelAnim 1.4s ease infinite;
-  border-radius:6px;
-}
-@keyframes skelAnim{0%{background-position:200% 0}100%{background-position:-200% 0}}
-.skel-line{height:14px;margin-bottom:8px}
-.skel-line.short{width:45%}
-.skel-line.med{width:70%}
-.skel-line.full{width:100%}
-
-/* ── Progress bar ── */
-#progressBar{
-  position:fixed;top:62px;left:0;right:0;z-index:1999;
-  height:3px;
-  background:linear-gradient(90deg,var(--accent),var(--accent2));
-  width:0%;transition:width .3s ease;
-  box-shadow:0 0 8px rgba(0,176,255,.5);
-}
-
-/* ── Loading overlay ── */
-.load-overlay{
-  position:fixed;inset:0;z-index:3000;
-  background:rgba(10,15,46,.6);
-  backdrop-filter:blur(6px);
-  display:flex;align-items:center;justify-content:center;
-}
-.load-card{
-  background:var(--bg-card);
-  border:1px solid var(--border);
-  border-radius:16px;
-  padding:32px 40px;
-  text-align:center;
-  box-shadow:var(--shadow-lg);
-  min-width:260px;
-}
-.load-ring{
-  width:56px;height:56px;margin:0 auto 14px;
-  border:3px solid var(--border);
-  border-top-color:var(--accent);
-  border-radius:50%;
-  animation:spin .75s linear infinite;
-}
-@keyframes spin{to{transform:rotate(360deg)}}
-.load-card p{font-size:15px;font-weight:600;color:var(--text);margin-bottom:4px}
-.load-card small{font-size:12px;color:var(--text-muted)}
-
-/* ── Toast notifications ── */
-.toast-stack{
-  position:fixed;bottom:24px;right:24px;z-index:4000;
-  display:flex;flex-direction:column;gap:8px;
-  max-width:340px;
-}
-.sci-toast{
-  display:flex;align-items:center;gap:12px;
-  background:var(--bg-card);
-  border:1px solid var(--border);
-  border-radius:10px;
-  padding:12px 16px;
-  box-shadow:var(--shadow-md);
-  animation:toastIn .3s ease;
-}
-@keyframes toastIn{from{opacity:0;transform:translateX(24px)}to{opacity:1;transform:translateX(0)}}
-.toast-icon{width:32px;height:32px;border-radius:8px;display:flex;align-items:center;justify-content:center;flex-shrink:0;font-size:14px}
-.toast-icon.success{background:rgba(0,200,83,.1);color:var(--success)}
-.toast-icon.error  {background:rgba(255,82,82,.1);color:var(--danger)}
-.toast-icon.info   {background:rgba(0,176,255,.1);color:var(--accent)}
-.toast-icon.warn   {background:rgba(255,171,0,.1);color:var(--warning)}
-.toast-msg{font-size:13px;color:var(--text);flex:1}
-.toast-close{background:none;border:none;color:var(--text-muted);cursor:pointer;font-size:14px;padding:0}
-.toast-close:hover{color:var(--text)}
-
-/* ── Copy tooltip ── */
-.copy-tip{
-  position:fixed;top:50%;left:50%;
-  transform:translate(-50%,-50%);
-  background:var(--success);color:#fff;
-  font-size:13px;font-weight:600;
-  padding:9px 20px;border-radius:99px;
-  z-index:5000;pointer-events:none;
-  animation:tipPop .2s ease;
-}
-@keyframes tipPop{from{opacity:0;transform:translate(-50%,-50%) scale(.8)}to{opacity:1;transform:translate(-50%,-50%) scale(1)}}
-
-/* ════════════════════════════════════
-   FOOTER
-   ════════════════════════════════════ */
-.sci-footer{
-  background:linear-gradient(135deg,#060a1e,#0a0f2e);
-  border-top:1px solid rgba(255,255,255,.06);
-  padding:48px 24px 28px;
-  margin-top:60px;
-}
-.footer-inner{max-width:1100px;margin:0 auto}
-.footer-grid{
-  display:grid;
-  grid-template-columns:2fr 1fr 1fr 1fr;
-  gap:40px;margin-bottom:36px;
-}
-@media(max-width:768px){.footer-grid{grid-template-columns:1fr 1fr}}
-@media(max-width:480px){.footer-grid{grid-template-columns:1fr}}
-.footer-brand .logo-wrap{display:flex;align-items:center;gap:10px;margin-bottom:12px}
-.footer-brand p{font-size:13px;color:rgba(255,255,255,.45);line-height:1.7;max-width:280px}
-.footer-wx-badge{
-  display:inline-flex;align-items:center;gap:7px;
-  background:rgba(0,176,255,.1);border:1px solid rgba(0,176,255,.2);
-  border-radius:99px;padding:5px 14px;
-  font-size:12px;font-weight:600;color:var(--accent);
-  margin-top:14px;
-}
-.footer-col h5{
-  font-size:11px;font-weight:700;letter-spacing:1px;
-  color:rgba(255,255,255,.35);text-transform:uppercase;
-  margin-bottom:14px;
-}
-.footer-col a{
-  display:block;font-size:13px;color:rgba(255,255,255,.5);
-  text-decoration:none;margin-bottom:8px;transition:color var(--trans);
-}
-.footer-col a:hover{color:var(--accent)}
-.footer-bottom{
-  border-top:1px solid rgba(255,255,255,.07);
-  padding-top:20px;
-  display:flex;justify-content:space-between;align-items:center;
-  flex-wrap:wrap;gap:10px;
-}
-.footer-bottom p{font-size:12px;color:rgba(255,255,255,.3)}
-.footer-bottom a{color:rgba(255,255,255,.3);text-decoration:none}
-.footer-bottom a:hover{color:var(--accent)}
-
-/* ── Responsive ── */
-@media(max-width:991px){
-  .app-grid{grid-template-columns:1fr}
-  .sidebar{position:static;height:auto}
-  .sidebar{flex-direction:row;flex-wrap:wrap;overflow-x:auto;padding-bottom:4px}
-  .sidebar-section-label{display:none}
-  .tool-card{flex-shrink:0;min-width:140px;padding:9px 12px}
-  .tool-desc{display:none}
-  .domain-select-wrap{display:none}
-  .bub-body{max-width:88%}
-}
-@media(max-width:575px){
-  .nav-links{display:none}
-  .hero-title{font-size:28px}
-  .hero-stats{gap:20px}
-  .hero-stat .num{font-size:22px}
-  .footer-grid{grid-template-columns:1fr}
-  .domains-bar{display:none}
-}
-
-/* ════════════════════════════════════════════════════════
-   GUIDED DEMO MODAL — FIXED LAYOUT
-   ════════════════════════════════════════════════════════ */
-
-/* Full-screen backdrop */
-.demo-overlay{
-  position:fixed;
-  top:0;left:0;
-  width:100vw;height:100vh;
-  z-index:99999;
-  background:rgba(4,7,26,.82);
-  backdrop-filter:blur(10px);
-  -webkit-backdrop-filter:blur(10px);
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  padding:16px;
-  overflow:hidden;
-  opacity:0;pointer-events:none;
-  transition:opacity .3s ease;
-}
-.demo-overlay.open{opacity:1;pointer-events:all}
-
-/* Centered modal card */
-.demo-card{
-  position:relative;
-  width:90%;
-  max-width:750px;
-  max-height:88vh;
-  background:linear-gradient(160deg,#0d1540 0%,#0a1230 50%,#0d1b4b 100%);
-  border:1px solid rgba(255,255,255,.1);
-  border-radius:18px;
-  box-shadow:0 24px 80px rgba(0,0,0,.7),0 0 0 1px rgba(0,176,255,.08);
-  display:flex;
-  flex-direction:column;
-  overflow:hidden;
-}
-
-/* Top bar */
-.demo-topbar{
-  display:flex;align-items:center;justify-content:space-between;
-  padding:14px 22px;
-  border-bottom:1px solid rgba(255,255,255,.07);
-  flex-shrink:0;
-  gap:12px;
-}
-.demo-logo{display:flex;align-items:center;gap:9px;flex-shrink:0}
-.demo-logo .logo-icon{width:28px;height:28px;font-size:13px}
-.demo-logo span{font-family:'Poppins',sans-serif;font-size:14px;font-weight:700;color:#fff}
-.demo-logo span em{color:var(--accent);font-style:normal}
-.demo-step-counter{
-  font-size:12px;font-weight:600;
-  color:rgba(255,255,255,.4);
-  letter-spacing:.4px;
-  white-space:nowrap;
-}
-.demo-step-counter strong{color:var(--accent)}
-.demo-close{
-  width:32px;height:32px;flex-shrink:0;
-  background:rgba(255,255,255,.07);
-  border:1px solid rgba(255,255,255,.1);
-  border-radius:8px;
-  color:rgba(255,255,255,.55);font-size:14px;
-  cursor:pointer;transition:all .2s;
-  display:flex;align-items:center;justify-content:center;
-}
-.demo-close:hover{background:rgba(255,82,82,.15);border-color:rgba(255,82,82,.4);color:#ff5252}
-
-/* Progress bar strip */
-.demo-progress-strip{
-  height:4px;
-  background:rgba(255,255,255,.07);
-  flex-shrink:0;
-}
-.demo-progress-fill{
-  height:100%;
-  background:linear-gradient(90deg,var(--accent),var(--accent2));
-  box-shadow:0 0 8px rgba(0,176,255,.45);
-  transition:width .45s cubic-bezier(.4,0,.2,1);
-}
-
-/* Scrollable slide viewport */
-.demo-stage{
-  flex:1;
-  overflow:hidden;
-  position:relative;
-  min-height:0; /* critical: prevents flex child from overflowing */
-}
-.demo-slides{
-  display:flex;
-  height:100%;
-  transition:transform .38s cubic-bezier(.4,0,.2,1);
-  will-change:transform;
-}
-.demo-slide{
-  min-width:100%;
-  height:100%;
-  display:flex;
-  flex-direction:column;
-  align-items:center;
-  justify-content:flex-start;
-  padding:24px 32px 8px;
-  overflow-y:auto;
-  overflow-x:hidden;
-  scrollbar-width:thin;
-  scrollbar-color:rgba(0,176,255,.3) transparent;
-  text-align:center;
-  box-sizing:border-box;
-}
-.demo-slide::-webkit-scrollbar{width:4px}
-.demo-slide::-webkit-scrollbar-track{background:transparent}
-.demo-slide::-webkit-scrollbar-thumb{background:rgba(0,176,255,.3);border-radius:99px}
-
-/* Bottom navigation bar */
-.demo-nav{
-  display:flex;align-items:center;justify-content:space-between;
-  padding:12px 22px;
-  border-top:1px solid rgba(255,255,255,.07);
-  flex-shrink:0;
-  gap:10px;
-  background:rgba(0,0,0,.15);
-}
-.demo-btn{
-  display:inline-flex;align-items:center;gap:6px;
-  padding:9px 20px;border-radius:9px;
-  font-size:13px;font-weight:600;cursor:pointer;
-  transition:all .2s ease;border:none;
-  white-space:nowrap;
-}
-.demo-btn-ghost{
-  background:rgba(255,255,255,.07);
-  color:rgba(255,255,255,.65);
-  border:1px solid rgba(255,255,255,.12);
-}
-.demo-btn-ghost:hover{background:rgba(255,255,255,.13);color:#fff}
-.demo-btn-primary{
-  background:linear-gradient(135deg,var(--accent),#0077b6);
-  color:#fff;
-  box-shadow:0 3px 12px rgba(0,176,255,.3);
-}
-.demo-btn-primary:hover{transform:translateY(-1px);box-shadow:0 5px 18px rgba(0,176,255,.5)}
-.demo-btn-skip{
-  background:transparent;
-  color:rgba(255,255,255,.3);
-  border:none;font-size:12.5px;
-  padding:8px 12px;cursor:pointer;
-  transition:color .2s;
-}
-.demo-btn-skip:hover{color:rgba(255,255,255,.6)}
-.demo-dots{display:flex;gap:6px;align-items:center}
-.demo-dot{
-  width:7px;height:7px;border-radius:50%;
-  background:rgba(255,255,255,.18);
-  cursor:pointer;transition:all .25s;
-  flex-shrink:0;
-}
-.demo-dot.active{background:var(--accent);width:20px;border-radius:99px;box-shadow:0 0 7px rgba(0,176,255,.5)}
-.demo-dot:hover{background:rgba(255,255,255,.45)}
-
-/* ── Slide content atoms ── */
-.demo-step-icon{
-  font-size:56px;
-  margin-bottom:12px;
-  margin-top:4px;
-  animation:demoIconBounce .5s ease;
-  line-height:1;
-  flex-shrink:0;
-}
-@keyframes demoIconBounce{from{transform:scale(.55);opacity:0}to{transform:scale(1);opacity:1}}
-.demo-title{
-  font-family:'Poppins',sans-serif;
-  font-size:clamp(18px,2.6vw,26px);
-  font-weight:800;color:#fff;
-  text-align:center;
-  margin-bottom:8px;
-  letter-spacing:-.5px;
-  flex-shrink:0;
-}
-.demo-title span{
-  background:linear-gradient(90deg,var(--accent),var(--accent2));
-  -webkit-background-clip:text;-webkit-text-fill-color:transparent;
-  background-clip:text;
-}
-.demo-desc{
-  font-size:14.5px;
-  color:rgba(255,255,255,.65);
-  text-align:center;
-  max-width:560px;
-  margin:0 auto 16px;
-  line-height:1.65;
-  flex-shrink:0;
-}
-.demo-watermark{
-  position:absolute;top:6px;right:8px;
-  font-size:8.5px;font-weight:800;letter-spacing:1.5px;
-  color:var(--accent);opacity:.45;
-  background:rgba(0,176,255,.07);
-  border:1px solid rgba(0,176,255,.12);
-  border-radius:4px;padding:2px 5px;
-}
-
-/* ── Mockup shells ── */
-.mockup{
-  background:rgba(255,255,255,.04);
-  border:1px solid rgba(255,255,255,.1);
-  border-radius:12px;
-  width:100%;
-  max-width:100%;
-  max-height:210px;
-  overflow:hidden;
-  position:relative;
-  flex-shrink:0;
-  text-align:left;
-}
-.mockup-bar{
-  display:flex;align-items:center;gap:5px;
-  padding:8px 12px;
-  background:rgba(255,255,255,.04);
-  border-bottom:1px solid rgba(255,255,255,.06);
-}
-.mockup-dot{width:9px;height:9px;border-radius:50%;flex-shrink:0}
-.mockup-dot:nth-child(1){background:#ff5f57}
-.mockup-dot:nth-child(2){background:#febc2e}
-.mockup-dot:nth-child(3){background:#28c840}
-.mockup-bar-title{
-  margin-left:auto;margin-right:auto;
-  font-size:10.5px;font-weight:600;color:rgba(255,255,255,.28);
-  letter-spacing:.3px;
-  overflow:hidden;text-overflow:ellipsis;white-space:nowrap;
-}
-.mockup-body{
-  padding:12px 14px;
-  font-size:13px;
-  overflow:hidden;
-}
-
-/* Chat mockup */
-.mk-bubble{
-  display:flex;gap:9px;margin-bottom:12px;align-items:flex-start;
-}
-.mk-bubble.mk-user{flex-direction:row-reverse}
-.mk-av{
-  width:28px;height:28px;border-radius:7px;
-  display:flex;align-items:center;justify-content:center;
-  font-size:12px;flex-shrink:0;
-}
-.mk-av.ai{background:linear-gradient(135deg,#1a237e,#0d47a1);color:#fff}
-.mk-av.usr{background:rgba(255,255,255,.08);color:rgba(255,255,255,.5);border:1px solid rgba(255,255,255,.1)}
-.mk-msg{
-  max-width:72%;
-  background:rgba(255,255,255,.06);
-  border:1px solid rgba(255,255,255,.08);
-  border-radius:9px;
-  padding:9px 13px;
-  font-size:13px;color:rgba(255,255,255,.85);
-  line-height:1.5;
-}
-.mk-bubble.mk-user .mk-msg{
-  background:rgba(0,176,255,.1);
-  border-color:rgba(0,176,255,.2);
-}
-.mk-granite{
-  display:inline-flex;align-items:center;gap:4px;
-  font-size:9px;font-weight:700;letter-spacing:.5px;
-  color:var(--accent);
-  background:rgba(0,176,255,.08);border:1px solid rgba(0,176,255,.15);
-  border-radius:99px;padding:2px 6px;margin-top:5px;
-}
-/* typing dots inside mockup */
-.mk-typing{display:flex;gap:4px;padding:4px 2px}
-.mk-typing span{
-  width:6px;height:6px;background:var(--accent);border-radius:50%;
-  animation:tBounce 1.2s ease infinite;
-}
-.mk-typing span:nth-child(2){animation-delay:.15s}
-.mk-typing span:nth-child(3){animation-delay:.3s}
-
-/* Input mockup */
-.mk-input{
-  background:rgba(255,255,255,.05);
-  border:1.5px solid rgba(0,176,255,.25);
-  border-radius:8px;
-  padding:9px 13px;
-  font-size:13px;color:rgba(255,255,255,.7);
-  font-family:'JetBrains Mono',monospace;
-  margin-bottom:12px;min-height:36px;
-  position:relative;
-}
-.mk-cursor-blink::after{
-  content:'|';color:var(--accent);
-  animation:blink 1s step-end infinite;
-}
-.mk-label{
-  font-size:10px;font-weight:700;
-  color:rgba(255,255,255,.3);letter-spacing:.8px;
-  text-transform:uppercase;margin-bottom:5px;
-}
-.mk-result{
-  background:rgba(0,176,255,.05);
-  border:1px solid rgba(0,176,255,.15);
-  border-radius:8px;
-  padding:11px 13px;
-  font-size:13px;
-  color:rgba(255,255,255,.8);
-  line-height:1.6;
-}
-.mk-result strong{color:var(--accent)}
-
-/* Citation output */
-.mk-citation{
-  font-family:'JetBrains Mono',monospace;
-  font-size:12px;
-  color:rgba(255,255,255,.8);
-  background:rgba(0,176,255,.06);
-  border:1px solid rgba(0,176,255,.15);
-  border-left:3px solid var(--accent);
-  border-radius:0 8px 8px 0;
-  padding:12px 14px;
-  line-height:1.6;
-}
-
-/* Hypothesis cards */
-.mk-hyp-card{
-  background:rgba(255,255,255,.05);
-  border:1px solid rgba(255,255,255,.09);
-  border-radius:9px;
-  padding:10px 13px;
-  margin-bottom:8px;
-  font-size:12.5px;color:rgba(255,255,255,.8);
-}
-.mk-hyp-card .mk-h-title{color:var(--accent);font-weight:700;font-size:11.5px;margin-bottom:4px}
-.mk-badge{
-  display:inline-block;
-  font-size:9.5px;font-weight:700;letter-spacing:.5px;
-  padding:2px 7px;border-radius:99px;margin-top:5px;
-  text-transform:uppercase;
-}
-.mk-badge.high{background:rgba(0,200,83,.12);color:#00c853;border:1px solid rgba(0,200,83,.25)}
-.mk-badge.med {background:rgba(255,171,0,.12);color:#ffab00;border:1px solid rgba(255,171,0,.25)}
-
-/* Review sections */
-.mk-section{
-  display:flex;align-items:center;gap:8px;
-  padding:6px 10px;border-radius:6px;
-  margin-bottom:5px;font-size:12.5px;color:rgba(255,255,255,.7);
-  background:rgba(255,255,255,.04);
-  border:1px solid rgba(255,255,255,.07);
-}
-.mk-section i{color:var(--accent);font-size:11px;flex-shrink:0}
-
-/* Theory comparison */
-.mk-vs-row{display:flex;gap:8px;align-items:stretch}
-.mk-vs-col{
-  flex:1;background:rgba(255,255,255,.04);
-  border:1px solid rgba(255,255,255,.08);
-  border-radius:9px;padding:10px 12px;
-  font-size:12px;color:rgba(255,255,255,.75);
-}
-.mk-vs-col .mk-col-title{
-  font-size:11px;font-weight:700;color:var(--accent);
-  margin-bottom:8px;letter-spacing:.3px;
-}
-.mk-vs-col li{margin-bottom:3px;padding-left:12px;position:relative}
-.mk-vs-col li::before{content:'•';position:absolute;left:0;color:var(--accent)}
-.mk-vs-sep{display:flex;align-items:center;justify-content:center;flex-shrink:0}
-.mk-vs-badge{
-  font-size:13px;font-weight:800;color:var(--accent);
-  background:rgba(0,176,255,.1);border:1.5px solid rgba(0,176,255,.25);
-  border-radius:7px;padding:4px 8px;letter-spacing:1px;
-}
-
-/* Finish step tools grid */
-.finish-tools{
-  display:grid;grid-template-columns:repeat(3,1fr);gap:8px;
-  width:100%;max-width:400px;margin:0 auto 18px;
-}
-.ft-item{
-  background:rgba(255,255,255,.05);
-  border:1px solid rgba(255,255,255,.09);
-  border-radius:9px;
-  padding:10px 6px;text-align:center;
-  font-size:11px;color:rgba(255,255,255,.6);
-  position:relative;
-}
-.ft-item .ft-icon{font-size:20px;margin-bottom:4px;display:block}
-.ft-check{
-  position:absolute;top:5px;right:5px;
-  width:14px;height:14px;border-radius:50%;
-  background:var(--success);
-  display:flex;align-items:center;justify-content:center;
-  font-size:7px;color:#fff;
-}
-
-/* Animated typewriter inside demo */
-.demo-tw{display:inline}
-
-/* Fade-in helper */
-.anim-fade{opacity:0;transform:translateY(5px);transition:all .35s ease}
-.anim-fade.visible{opacity:1;transform:translateY(0)}
-
-/* Step-specific glow — pointer-events off, behind content */
-.step-glow{
-  position:absolute;
-  width:400px;height:400px;
-  background:radial-gradient(circle,rgba(0,176,255,.06) 0%,transparent 70%);
-  top:50%;left:50%;transform:translate(-50%,-50%);
-  pointer-events:none;z-index:0;
-}
-
-/* Mobile responsive for demo */
-@media(max-width:600px){
-  .demo-card{width:96%;max-height:92vh;border-radius:14px}
-  .demo-topbar{padding:10px 14px}
-  .demo-logo span{font-size:12px}
-  .demo-step-counter{font-size:11px}
-  .demo-slide{padding:14px 16px 6px}
-  .demo-step-icon{font-size:40px;margin-bottom:8px}
-  .demo-title{font-size:17px}
-  .demo-desc{font-size:13px;margin-bottom:12px}
-  .mockup{max-height:170px}
-  .mockup-body{padding:9px 11px}
-  .demo-btn{padding:8px 14px;font-size:12px}
-  .demo-nav{padding:10px 14px}
-  .finish-tools{grid-template-columns:repeat(3,1fr);gap:6px}
-  .ft-item{padding:8px 4px;font-size:10px}
-  .ft-item .ft-icon{font-size:16px}
-}
-</style>
+<title>SciMind — Scientific Research Agent, powered by IBM watsonx.ai</title>
+<meta name="description" content="An AI research agent built on IBM Granite/watsonx.ai — chat, summarize papers, generate citations, build literature reviews, and more."/>
+<link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
 </head>
-<body class="page-fade">
+<body>
 
-<!-- Progress Bar -->
-<div id="progressBar"></div>
+<!-- ===================== ICON SPRITE ===================== -->
+<svg style="display:none" aria-hidden="true">
+  <symbol id="icon-sun" viewBox="0 0 24 24"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></symbol>
+  <symbol id="icon-moon" viewBox="0 0 24 24"><path d="M20 14.5A8.5 8.5 0 1 1 9.5 4a7 7 0 0 0 10.5 10.5z"/></symbol>
+  <symbol id="icon-cpu" viewBox="0 0 24 24"><rect x="7" y="7" width="10" height="10" rx="1"/><path d="M9 2v3M15 2v3M9 19v3M15 19v3M2 9h3M2 15h3M19 9h3M19 15h3"/></symbol>
+  <symbol id="icon-copy" viewBox="0 0 24 24"><rect x="9" y="9" width="12" height="12" rx="1"/><path d="M5 15H4a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1h10a1 1 0 0 1 1 1v1"/></symbol>
+  <symbol id="icon-info" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 11v5M12 8h.01"/></symbol>
+  <symbol id="icon-alert" viewBox="0 0 24 24"><path d="M12 2 1 21h22z"/><path d="M12 9v5M12 17h.01"/></symbol>
+  <symbol id="icon-check" viewBox="0 0 24 24"><path d="M20 6 9 17l-5-5"/></symbol>
+  <symbol id="icon-close" viewBox="0 0 24 24"><path d="M18 6 6 18M6 6l12 12"/></symbol>
+  <symbol id="icon-arrow-right" viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></symbol>
+  <symbol id="icon-send" viewBox="0 0 24 24"><path d="M22 2 11 13"/><path d="M22 2 15 22l-4-9-9-4z"/></symbol>
+  <symbol id="icon-chat" viewBox="0 0 24 24"><path d="M21 11.5a8.4 8.4 0 0 1-8.9 8.4 9 9 0 0 1-3.9-.9L3 20l1-5.2A8.4 8.4 0 1 1 21 11.5z"/></symbol>
+  <symbol id="icon-file-text" viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6M8 13h8M8 17h8M8 9h2"/></symbol>
+  <symbol id="icon-quote" viewBox="0 0 24 24"><path d="M7 15h3l2-4V6H5v5h3zM16 15h3l2-4V6h-7v5h3z"/></symbol>
+  <symbol id="icon-book" viewBox="0 0 24 24"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></symbol>
+  <symbol id="icon-bulb" viewBox="0 0 24 24"><path d="M9 18h6M10 22h4"/><path d="M12 2a7 7 0 0 0-4 12.7c.6.5 1 1.2 1 2.3h6c0-1.1.4-1.8 1-2.3A7 7 0 0 0 12 2z"/></symbol>
+  <symbol id="icon-doc" viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6"/></symbol>
+  <symbol id="icon-compass" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="m16 8-4 4-4 8 4-4z"/></symbol>
+  <symbol id="icon-question" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M9.1 9a3 3 0 0 1 5.8 1c0 2-3 2-3 4M12 17h.01"/></symbol>
+  <symbol id="icon-scale" viewBox="0 0 24 24"><path d="M12 3v18M7 21h10"/><path d="m5 8-3.5 6.5a3 3 0 0 0 3.5 1.5A3 3 0 0 0 8.5 14.5z"/><path d="m19 8 3.5 6.5a3 3 0 0 1-3.5 1.5 3 3 0 0 1-3.5-1.5z"/><path d="M5 8h4M15 8h4M12 3 5 8M12 3l7 5"/></symbol>
+  <symbol id="icon-github" viewBox="0 0 24 24"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.9a3.4 3.4 0 0 0-1-2.7c3-.3 6-1.5 6-6.6a5 5 0 0 0-1.4-3.5 4.6 4.6 0 0 0-.1-3.5s-1.1-.3-3.5 1.3a12.3 12.3 0 0 0-6.4 0C6.9 1 5.8 1.3 5.8 1.3a4.6 4.6 0 0 0-.1 3.5A5 5 0 0 0 4.3 8.3c0 5.1 3 6.3 6 6.6a3.4 3.4 0 0 0-1 2.6V21"/></symbol>
+  <symbol id="icon-external" viewBox="0 0 24 24"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><path d="M15 3h6v6M10 14 21 3"/></symbol>
+</svg>
 
-<!-- ══════════════════ NAVBAR ══════════════════ -->
-<nav class="sci-nav" id="mainNav">
-  <div class="nav-inner">
-    <a href="#" class="nav-logo">
-      <div class="logo-icon"><i class="fa-solid fa-atom"></i></div>
-      <span class="logo-text">Sci<span>Mind</span></span>
-    </a>
+<!-- ===================== UTILITY BAR ===================== -->
+<div class="util-bar">
+  <div class="container">
+    <div class="util-left"><span class="pulse-dot"></span> watsonx.ai · IBM Granite</div>
+    <div class="util-right">
+      <a href="#capabilities">Capabilities</a>
+      <a href="/api/health" target="_blank">API status</a>
+      <a href="https://www.ibm.com/watsonx" target="_blank" rel="noopener">IBM watsonx</a>
+    </div>
+  </div>
+</div>
+
+<!-- ===================== NAV ===================== -->
+<nav class="nav">
+  <div class="container">
+    <a href="#" class="nav-brand"><span class="mark">Sc</span>SciMind</a>
     <ul class="nav-links">
-      <li><a href="#hero" class="active">Home</a></li>
-      <li><a href="#app">Tools</a></li>
-      <li><a href="#app">Domains</a></li>
-      <li><a href="#footer">About</a></li>
+      <li><a href="#capabilities">Capabilities</a></li>
+      <li><a href="#domains">Domains</a></li>
+      <li><a href="#how">How it works</a></li>
+      <li><a href="#app">Console</a></li>
     </ul>
-    <div class="nav-right">
-      <select id="globalDomain" class="sci-select" style="min-width:150px;font-size:12.5px;padding:6px 10px">
-        <option value="General Science">All Domains</option>
-        <option value="Physics">Physics</option>
-        <option value="Chemistry">Chemistry</option>
-        <option value="Biology">Biology</option>
-        <option value="Mathematics">Mathematics</option>
-        <option value="Computer Science">Computer Science</option>
-        <option value="Earth Sciences">Earth Sciences</option>
-        <option value="Space & Astronomy">Space & Astronomy</option>
-        <option value="Engineering Sciences">Engineering</option>
-        <option value="Environmental Science">Environmental</option>
-        <option value="Neuroscience">Neuroscience</option>
-      </select>
-      <div class="watsonx-badge"><i class="fa-solid fa-microchip"></i> IBM Watsonx</div>
-      <button class="theme-btn" id="themeBtn" title="Toggle theme"><i class="fa-solid fa-moon" id="themeIcon"></i></button>
+    <div class="nav-actions">
+      <button class="icon-btn" id="themeToggle" aria-label="Toggle theme">
+        <svg class="icon" style="width:16px;height:16px"><use id="themeIconUse" href="#icon-sun"></use></svg>
+      </button>
+      <a href="#app" class="btn btn-primary btn-sm">Open console</a>
     </div>
   </div>
 </nav>
 
-<!-- ══════════════════ HERO ══════════════════ -->
-<section class="hero" id="hero">
-  <canvas id="particleCanvas"></canvas>
-  <div class="hero-content">
-    <div class="hero-eyebrow"><i class="fa-solid fa-flask-vial"></i> Powered by IBM Granite · Watsonx.ai</div>
-    <h1 class="hero-title">SciMind — AI Scientific<br/><span>Research Intelligence</span></h1>
-    <div class="typewriter-wrap">
-      <span id="typewriter"></span><span class="cursor">|</span>
+<!-- ===================== HERO ===================== -->
+<header class="hero">
+  <div class="container">
+    <div class="hero-copy">
+      <div class="hero-eyebrow"><span class="dot"></span> Internship build · IBM watsonx.ai + Granite</div>
+      <h1>A research agent that reads,<br>writes, and reasons like<br><em>a science co‑author.</em></h1>
+      <p class="hero-sub">SciMind runs nine specialized research tools on top of IBM Granite — from domain-locked Q&amp;A to citation formatting and literature review drafting — so the busywork of research gets done in seconds, not afternoons.</p>
+      <div class="hero-cta">
+        <a href="#app" class="btn btn-primary">Open the console <svg class="icon" style="width:15px;height:15px"><use href="#icon-arrow-right"></use></svg></a>
+        <a href="#capabilities" class="btn btn-secondary">See all 9 tools</a>
+      </div>
+      <div class="hero-meta">
+        <div><b data-count="9">0</b>research tools</div>
+        <div><b data-count="10">0</b>science domains</div>
+        <div><b>Granite</b>on watsonx.ai</div>
+      </div>
     </div>
-    <div class="hero-cta">
-      <button class="btn-hero-primary ripple" onclick="scrollToApp()">
-        <i class="fa-solid fa-flask"></i> Start Researching
-      </button>
-      <button class="btn-hero-secondary" onclick="openDemo()">
-        <i class="fa-regular fa-circle-play"></i> Watch Demo
-      </button>
-    </div>
-    <div class="hero-stats">
-      <div class="hero-stat"><span class="num">10</span><span class="lbl">Scientific Domains</span></div>
-      <div class="hero-stat"><span class="num">9</span><span class="lbl">Research Tools</span></div>
-      <div class="hero-stat"><span class="num">5</span><span class="lbl">Citation Styles</span></div>
-      <div class="hero-stat"><span class="num">∞</span><span class="lbl">Possibilities</span></div>
+
+    <!-- SIGNATURE ELEMENT: live watsonx console -->
+    <div class="console">
+      <div class="console-bar">
+        <span class="dots"><span></span><span></span><span></span></span>
+        watsonx-chat · granite-3-3-8b-instruct
+        <span class="live"><span class="pulse-dot"></span> live</span>
+      </div>
+      <div class="console-body">
+        <div class="console-line"><span class="tag">$</span> <span class="usr" id="consoleInputText"></span><span class="console-cursor"></span></div>
+        <div class="console-out" id="consoleOut"></div>
+      </div>
     </div>
   </div>
-  <div class="scroll-indicator">
-    <i class="fa-solid fa-chevron-down"></i>
-    <span>Scroll to explore</span>
+</header>
+
+<!-- ===================== CAPABILITIES ===================== -->
+<section class="section" id="capabilities">
+  <div class="container">
+    <div class="section-head reveal">
+      <div class="section-eyebrow">Capabilities</div>
+      <h2>Nine tools, one research workflow</h2>
+      <p>Each tool maps to a real step in scientific work — pick one to open it in the console below.</p>
+    </div>
+    <div class="tool-grid">
+      <div class="tool-card reveal" data-delay="1" data-panel="chat">
+        <span class="num">01</span>
+        <div class="icon-wrap"><svg class="icon"><use href="#icon-chat"></use></svg></div>
+        <h3>Research Chat</h3>
+        <p>Multi-turn scientific Q&amp;A, locked to the domain you select.</p>
+        <span class="go">Open tool <svg class="icon"><use href="#icon-arrow-right"></use></svg></span>
+      </div>
+      <div class="tool-card reveal" data-delay="2" data-panel="summarize">
+        <span class="num">02</span>
+        <div class="icon-wrap"><svg class="icon"><use href="#icon-file-text"></use></svg></div>
+        <h3>Paper Summarizer</h3>
+        <p>Brief, detailed, or technical summaries of abstracts and full text.</p>
+        <span class="go">Open tool <svg class="icon"><use href="#icon-arrow-right"></use></svg></span>
+      </div>
+      <div class="tool-card reveal" data-delay="3" data-panel="citation">
+        <span class="num">03</span>
+        <div class="icon-wrap"><svg class="icon"><use href="#icon-quote"></use></svg></div>
+        <h3>Citation Generator</h3>
+        <p>APA, IEEE, Nature, Science, and MLA formatting from raw paper details.</p>
+        <span class="go">Open tool <svg class="icon"><use href="#icon-arrow-right"></use></svg></span>
+      </div>
+      <div class="tool-card reveal" data-delay="4" data-panel="lit-review">
+        <span class="num">04</span>
+        <div class="icon-wrap"><svg class="icon"><use href="#icon-book"></use></svg></div>
+        <h3>Literature Review Builder</h3>
+        <p>Structured 7-section reviews with a key-takeaways summary.</p>
+        <span class="go">Open tool <svg class="icon"><use href="#icon-arrow-right"></use></svg></span>
+      </div>
+      <div class="tool-card reveal" data-delay="5" data-panel="hypothesis">
+        <span class="num">05</span>
+        <div class="icon-wrap"><svg class="icon"><use href="#icon-bulb"></use></svg></div>
+        <h3>Hypothesis Generator</h3>
+        <p>Testable hypotheses with variables, methods, and feasibility ratings.</p>
+        <span class="go">Open tool <svg class="icon"><use href="#icon-arrow-right"></use></svg></span>
+      </div>
+      <div class="tool-card reveal" data-delay="6" data-panel="report">
+        <span class="num">06</span>
+        <div class="icon-wrap"><svg class="icon"><use href="#icon-doc"></use></svg></div>
+        <h3>Research Report Drafter</h3>
+        <p>Full paper outlines, or a single section drafted on its own.</p>
+        <span class="go">Open tool <svg class="icon"><use href="#icon-arrow-right"></use></svg></span>
+      </div>
+      <div class="tool-card reveal" data-delay="7" data-panel="explore">
+        <span class="num">07</span>
+        <div class="icon-wrap"><svg class="icon"><use href="#icon-compass"></use></svg></div>
+        <h3>Topic Explorer</h3>
+        <p>Key concepts, foundational theories, and open questions in a field.</p>
+        <span class="go">Open tool <svg class="icon"><use href="#icon-arrow-right"></use></svg></span>
+      </div>
+      <div class="tool-card reveal" data-delay="8" data-panel="explain">
+        <span class="num">08</span>
+        <div class="icon-wrap"><svg class="icon"><use href="#icon-question"></use></svg></div>
+        <h3>Concept Explainer</h3>
+        <p>Beginner, intermediate, or expert explanations of any concept.</p>
+        <span class="go">Open tool <svg class="icon"><use href="#icon-arrow-right"></use></svg></span>
+      </div>
+      <div class="tool-card reveal" data-delay="8" data-panel="compare">
+        <span class="num">09</span>
+        <div class="icon-wrap"><svg class="icon"><use href="#icon-scale"></use></svg></div>
+        <h3>Theory Comparator</h3>
+        <p>Side-by-side analysis of competing theories, models, or paradigms.</p>
+        <span class="go">Open tool <svg class="icon"><use href="#icon-arrow-right"></use></svg></span>
+      </div>
+    </div>
   </div>
 </section>
 
-<!-- ══════════════════ APP SECTION ══════════════════ -->
-<section class="app-section" id="app">
-
-  <!-- Domain Pills Bar -->
-  <div class="domains-bar">
-    <span class="domains-label">Domain</span>
-    <span class="domain-pill dp-all active" data-domain="General Science">All Science</span>
-    <span class="domain-pill dp-physics" data-domain="Physics"><i class="fa-solid fa-atom"></i> Physics</span>
-    <span class="domain-pill dp-chem" data-domain="Chemistry"><i class="fa-solid fa-flask"></i> Chemistry</span>
-    <span class="domain-pill dp-bio" data-domain="Biology"><i class="fa-solid fa-dna"></i> Biology</span>
-    <span class="domain-pill dp-cs" data-domain="Computer Science"><i class="fa-solid fa-microchip"></i> CS & AI</span>
-    <span class="domain-pill dp-space" data-domain="Space & Astronomy"><i class="fa-solid fa-rocket"></i> Space</span>
-    <span class="domain-pill dp-neuro" data-domain="Neuroscience"><i class="fa-solid fa-brain"></i> Neuro</span>
-    <span class="domain-pill dp-earth" data-domain="Earth Sciences"><i class="fa-solid fa-earth-americas"></i> Earth</span>
-    <span class="domain-pill dp-env" data-domain="Environmental Science"><i class="fa-solid fa-leaf"></i> Env</span>
-    <span class="domain-pill dp-eng" data-domain="Engineering Sciences"><i class="fa-solid fa-gears"></i> Eng</span>
-    <span class="domain-pill dp-math" data-domain="Mathematics"><i class="fa-solid fa-square-root-variable"></i> Math</span>
+<!-- ===================== DOMAIN STRIP ===================== -->
+<div class="domain-strip" id="domains">
+  <div class="container">
+    <span class="domain-tag reveal" data-delay="1"><span class="code">PHY</span> Physics</span>
+    <span class="domain-tag reveal" data-delay="2"><span class="code">CHM</span> Chemistry</span>
+    <span class="domain-tag reveal" data-delay="3"><span class="code">BIO</span> Biology</span>
+    <span class="domain-tag reveal" data-delay="4"><span class="code">MTH</span> Mathematics</span>
+    <span class="domain-tag reveal" data-delay="5"><span class="code">CS</span> Computer Science</span>
+    <span class="domain-tag reveal" data-delay="6"><span class="code">GEO</span> Earth Sciences</span>
+    <span class="domain-tag reveal" data-delay="7"><span class="code">SPC</span> Space &amp; Astronomy</span>
+    <span class="domain-tag reveal" data-delay="8"><span class="code">ENG</span> Engineering Sciences</span>
+    <span class="domain-tag reveal" data-delay="8"><span class="code">ENV</span> Environmental Science</span>
+    <span class="domain-tag reveal" data-delay="8"><span class="code">NRO</span> Neuroscience</span>
   </div>
+</div>
 
-  <!-- Main Grid -->
-  <div class="app-grid">
-
-    <!-- ── SIDEBAR ── -->
-    <aside class="sidebar" id="sidebar">
-      <span class="sidebar-section-label">Research Tools</span>
-
-      <div class="tool-card active" data-panel="chat">
-        <div class="tool-icon ti-chat"><i class="fa-solid fa-comments"></i></div>
-        <div class="tool-info">
-          <span class="tool-name">Research Chat</span>
-          <span class="tool-desc">Multi-turn scientific Q&A</span>
-        </div>
-        <i class="fa-solid fa-chevron-right tool-arrow"></i>
+<!-- ===================== HOW IT WORKS ===================== -->
+<section class="section" id="how">
+  <div class="container">
+    <div class="section-head reveal">
+      <div class="section-eyebrow">How it works</div>
+      <h2>Three steps from question to output</h2>
+    </div>
+    <div class="steps">
+      <div class="step reveal" data-delay="1">
+        <div class="n">01</div>
+        <h3>Pick a tool and a domain</h3>
+        <p>Choose one of nine tools, then lock the conversation to a scientific domain so answers stay on-topic.</p>
       </div>
-
-      <div class="tool-card" data-panel="summarize">
-        <div class="tool-icon ti-sum"><i class="fa-solid fa-file-lines"></i></div>
-        <div class="tool-info">
-          <span class="tool-name">Paper Summarizer</span>
-          <span class="tool-desc">Abstract & full-text summaries</span>
-        </div>
-        <i class="fa-solid fa-chevron-right tool-arrow"></i>
+      <div class="step reveal" data-delay="2">
+        <div class="n">02</div>
+        <h3>Describe the task</h3>
+        <p>Paste an abstract, name a topic, or state two theories to compare — plain language is enough.</p>
       </div>
-
-      <div class="tool-card" data-panel="citation">
-        <div class="tool-icon ti-cit"><i class="fa-solid fa-quote-right"></i></div>
-        <div class="tool-info">
-          <span class="tool-name">Citation Generator</span>
-          <span class="tool-desc">APA, IEEE, Nature, Science, MLA</span>
-        </div>
-        <i class="fa-solid fa-chevron-right tool-arrow"></i>
+      <div class="step reveal" data-delay="3">
+        <div class="n">03</div>
+        <h3>Get a structured result</h3>
+        <p>Granite returns Markdown-formatted output with clear sections, ready to copy into your own work.</p>
       </div>
+    </div>
+  </div>
+</section>
 
-      <div class="tool-card" data-panel="litreview">
-        <div class="tool-icon ti-lit"><i class="fa-solid fa-books"></i></div>
-        <div class="tool-info">
-          <span class="tool-name">Literature Review</span>
-          <span class="tool-desc">Structured 7-section reviews</span>
-        </div>
-        <i class="fa-solid fa-chevron-right tool-arrow"></i>
-      </div>
-
-      <div class="tool-card" data-panel="hypothesis">
-        <div class="tool-icon ti-hyp"><i class="fa-solid fa-lightbulb"></i></div>
-        <div class="tool-info">
-          <span class="tool-name">Hypothesis Generator</span>
-          <span class="tool-desc">Testable research hypotheses</span>
-        </div>
-        <i class="fa-solid fa-chevron-right tool-arrow"></i>
-      </div>
-
-      <div class="tool-card" data-panel="report">
-        <div class="tool-icon ti-rep"><i class="fa-solid fa-file-pen"></i></div>
-        <div class="tool-info">
-          <span class="tool-name">Report Drafter</span>
-          <span class="tool-desc">Paper sections in academic style</span>
-        </div>
-        <i class="fa-solid fa-chevron-right tool-arrow"></i>
-      </div>
-
-      <div class="tool-card" data-panel="explore">
-        <div class="tool-icon ti-exp"><i class="fa-solid fa-compass"></i></div>
-        <div class="tool-info">
-          <span class="tool-name">Topic Explorer</span>
-          <span class="tool-desc">Deep-dive any topic</span>
-        </div>
-        <i class="fa-solid fa-chevron-right tool-arrow"></i>
-      </div>
-
-      <div class="tool-card" data-panel="explain">
-        <div class="tool-icon ti-expl"><i class="fa-solid fa-graduation-cap"></i></div>
-        <div class="tool-info">
-          <span class="tool-name">Concept Explainer</span>
-          <span class="tool-desc">Beginner to PhD-level</span>
-        </div>
-        <i class="fa-solid fa-chevron-right tool-arrow"></i>
-      </div>
-
-      <div class="tool-card" data-panel="compare">
-        <div class="tool-icon ti-cmp"><i class="fa-solid fa-arrows-left-right"></i></div>
-        <div class="tool-info">
-          <span class="tool-name">Theory Comparator</span>
-          <span class="tool-desc">Side-by-side theory analysis</span>
-        </div>
-        <i class="fa-solid fa-chevron-right tool-arrow"></i>
-      </div>
-
-      <span class="sidebar-section-label" style="margin-top:8px">Active Domain</span>
+<!-- ===================== APP SECTION (working product) ===================== -->
+<section class="app-section" id="app">
+  <div class="app-topbar">
+    <div class="container">
+      <h2>Console</h2>
       <div class="domain-select-wrap">
-        <select id="sidebarDomain" class="sci-select">
-          <option value="General Science">All Domains</option>
+        <label for="globalDomain">Domain</label>
+        <select id="globalDomain" class="field">
+          <option value="General Science">General Science</option>
           <option value="Physics">Physics</option>
           <option value="Chemistry">Chemistry</option>
           <option value="Biology">Biology</option>
           <option value="Mathematics">Mathematics</option>
           <option value="Computer Science">Computer Science</option>
           <option value="Earth Sciences">Earth Sciences</option>
-          <option value="Space & Astronomy">Space & Astronomy</option>
-          <option value="Engineering Sciences">Engineering</option>
+          <option value="Space & Astronomy">Space &amp; Astronomy</option>
+          <option value="Engineering Sciences">Engineering Sciences</option>
           <option value="Environmental Science">Environmental Science</option>
           <option value="Neuroscience">Neuroscience</option>
         </select>
       </div>
-    </aside>
+    </div>
+  </div>
 
-    <!-- ── MAIN PANEL ── -->
-    <main class="main-panel">
+  <div class="container" style="padding:0">
+    <div class="app-grid">
+      <!-- SIDEBAR -->
+      <nav class="app-sidebar">
+        <button class="feature-tab-btn active" data-panel="chat"><svg class="icon"><use href="#icon-chat"></use></svg> Research Chat</button>
+        <button class="feature-tab-btn" data-panel="summarize"><svg class="icon"><use href="#icon-file-text"></use></svg> Summarizer</button>
+        <button class="feature-tab-btn" data-panel="citation"><svg class="icon"><use href="#icon-quote"></use></svg> Citation</button>
+        <button class="feature-tab-btn" data-panel="lit-review"><svg class="icon"><use href="#icon-book"></use></svg> Lit Review</button>
+        <button class="feature-tab-btn" data-panel="hypothesis"><svg class="icon"><use href="#icon-bulb"></use></svg> Hypothesis</button>
+        <button class="feature-tab-btn" data-panel="report"><svg class="icon"><use href="#icon-doc"></use></svg> Report Drafter</button>
+        <button class="feature-tab-btn" data-panel="explore"><svg class="icon"><use href="#icon-compass"></use></svg> Topic Explorer</button>
+        <button class="feature-tab-btn" data-panel="explain"><svg class="icon"><use href="#icon-question"></use></svg> Explain Concept</button>
+        <button class="feature-tab-btn" data-panel="compare"><svg class="icon"><use href="#icon-scale"></use></svg> Compare Theories</button>
+      </nav>
 
-      <!-- ════ CHAT ════ -->
-      <div class="panel-section active" id="panel-chat">
-        <div class="panel-hdr">
-          <h2><i class="fa-solid fa-comments"></i> Research Chat</h2>
-          <p>Ask any scientific question — get expert-level, structured answers powered by IBM Granite.</p>
-        </div>
-        <div class="chat-wrap">
-          <div class="chat-msgs" id="chatMsgs">
-            <div class="chat-welcome">
-              <div class="welcome-orb"><i class="fa-solid fa-robot"></i></div>
-              <h3>Welcome to SciMind</h3>
-              <p>Your AI research companion powered by IBM Granite. Start with a question or pick a topic.</p>
-              <div class="quick-grid">
-                <span class="quick-chip" onclick="qPrompt('Explain quantum entanglement and its role in quantum computing.')">Quantum Entanglement</span>
-                <span class="quick-chip" onclick="qPrompt('What are the latest breakthroughs in CRISPR gene editing?')">CRISPR Breakthroughs</span>
-                <span class="quick-chip" onclick="qPrompt('Summarize the current state of climate change science.')">Climate Science</span>
-                <span class="quick-chip" onclick="qPrompt('What are the biggest open problems in theoretical physics?')">Open Physics Problems</span>
-                <span class="quick-chip" onclick="qPrompt('How does transformer architecture work in large language models?')">Transformer Architecture</span>
-                <span class="quick-chip" onclick="qPrompt('Explain the central dogma of molecular biology.')">Central Dogma</span>
-              </div>
+      <!-- MAIN PANEL -->
+      <main class="app-main">
+
+        <!-- CHAT -->
+        <section class="panel-section active" id="panel-chat">
+          <div class="chat-wrap">
+            <div class="chat-messages" id="chatMessages"></div>
+            <div class="chat-input-bar">
+              <textarea id="chatInput" class="field" rows="1" placeholder="Ask a question in the selected domain… (Shift+Enter for new line)"></textarea>
+              <button class="send-btn" onclick="sendChat()" aria-label="Send"><svg class="icon" style="stroke:#fff"><use href="#icon-send"></use></svg></button>
             </div>
           </div>
-          <div class="chat-input-bar">
-            <div class="chat-input-row">
-              <textarea id="chatInput" class="chat-textarea" placeholder="Ask a scientific question… (Enter to send, Shift+Enter for new line)" rows="1"></textarea>
-              <button class="chat-send" id="chatSendBtn" onclick="sendChat()"><i class="fa-solid fa-paper-plane"></i></button>
-            </div>
-            <div class="chat-bottom">
-              <span><i class="fa-regular fa-keyboard"></i> Ctrl+Enter · Shift+Enter for newline</span>
-              <button class="btn-ghost-sci" onclick="clearChat()" style="padding:4px 10px;font-size:12px">
-                <i class="fa-solid fa-trash"></i> Clear
-              </button>
-            </div>
-          </div>
-        </div>
-      </div>
+        </section>
 
-      <!-- ════ SUMMARIZE ════ -->
-      <div class="panel-section" id="panel-summarize">
-        <div class="panel-hdr">
-          <h2><i class="fa-solid fa-file-lines"></i> Paper Summarization</h2>
-          <p>Paste an abstract or full paper text to generate a structured AI summary.</p>
-        </div>
-        <div class="tool-container">
-          <div class="form-group">
-            <label class="sci-label">Summary Style</label>
-            <div class="style-pills">
-              <span class="style-pill" data-style="brief"><i class="fa-solid fa-bolt"></i> Brief</span>
-              <span class="style-pill active" data-style="detailed"><i class="fa-solid fa-list-ul"></i> Detailed</span>
-              <span class="style-pill" data-style="technical"><i class="fa-solid fa-gear"></i> Technical</span>
+        <!-- SUMMARIZE -->
+        <section class="panel-section" id="panel-summarize">
+          <div class="panel-head"><h3>Paper Summarizer</h3><p>Paste an abstract or full text, choose a style, and get a structured summary.</p></div>
+          <div class="field-group">
+            <label class="field-label">Paper text or abstract</label>
+            <textarea id="sumInput" class="field" rows="7" placeholder="Paste the abstract or full paper text here…"></textarea>
+          </div>
+          <div class="field-group">
+            <label class="field-label">Summary style</label>
+            <div class="pill-group">
+              <label class="pill-radio"><input type="radio" name="sumStyle" value="brief"><span>Brief</span></label>
+              <label class="pill-radio"><input type="radio" name="sumStyle" value="detailed" checked><span>Detailed</span></label>
+              <label class="pill-radio"><input type="radio" name="sumStyle" value="technical"><span>Technical</span></label>
             </div>
           </div>
-          <div class="form-group">
-            <label class="sci-label">Paper Text <span style="color:var(--text-muted);font-weight:400">— abstract or full text</span></label>
-            <textarea id="sumInput" class="sci-input mono" rows="9" placeholder="Paste the paper abstract, introduction, or full text here…" oninput="updateCharCount(this,'sumCount')"></textarea>
-            <div class="char-info"><span id="sumCount">0 characters</span></div>
-          </div>
-          <button class="btn-primary-sci w-full ripple" onclick="runSummarize()">
-            <i class="fa-solid fa-wand-magic-sparkles"></i> Generate Summary
-          </button>
-          <div id="sumResult"></div>
-        </div>
-      </div>
+          <button class="btn btn-primary" onclick="runSummarize()">Summarize</button>
+          <div id="sumResult" class="result-area"></div>
+        </section>
 
-      <!-- ════ CITATION ════ -->
-      <div class="panel-section" id="panel-citation">
-        <div class="panel-hdr">
-          <h2><i class="fa-solid fa-quote-right"></i> Citation Generator</h2>
-          <p>Format references in APA, IEEE, Nature, Science, or MLA style instantly.</p>
-        </div>
-        <div class="tool-container">
-          <div class="info-note"><i class="fa-solid fa-circle-info"></i> Provide author names, title, journal, year, volume, pages, and DOI. The agent will not fabricate missing fields.</div>
-          <div class="row g-3 mb-3">
-            <div class="col-md-6">
-              <label class="sci-label">Citation Style</label>
-              <select id="citStyle" class="sci-select">
-                <option value="APA">APA 7th Edition</option>
-                <option value="IEEE">IEEE</option>
-                <option value="NATURE">Nature</option>
-                <option value="SCIENCE">Science</option>
-                <option value="MLA">MLA 9th Edition</option>
+        <!-- CITATION -->
+        <section class="panel-section" id="panel-citation">
+          <div class="panel-head"><h3>Citation Generator</h3><p>Enter what you know about the paper — missing fields are marked, never invented.</p></div>
+          <div class="field-group">
+            <label class="field-label">Paper details</label>
+            <textarea id="citInput" class="field" rows="6" placeholder="Author: Smith J.&#10;Title: …&#10;Journal: Nature&#10;Year: 2023"></textarea>
+          </div>
+          <div class="field-group" style="max-width:220px">
+            <label class="field-label">Citation style</label>
+            <select id="citStyle" class="field">
+              <option>APA</option><option>IEEE</option><option>NATURE</option><option>SCIENCE</option><option>MLA</option>
+            </select>
+          </div>
+          <button class="btn btn-primary" onclick="runCitation()">Generate citation</button>
+          <div id="citResult" class="result-area"></div>
+        </section>
+
+        <!-- LIT REVIEW -->
+        <section class="panel-section" id="panel-lit-review">
+          <div class="panel-head"><h3>Literature Review Builder</h3><p>A structured 7-section review of any research topic.</p></div>
+          <div class="field-group">
+            <label class="field-label">Research topic</label>
+            <input type="text" id="litTopic" class="field" placeholder="e.g. Quantum computing in drug discovery">
+          </div>
+          <div class="field-group">
+            <label class="field-label">Known papers or sources (optional)</label>
+            <textarea id="litPapers" class="field" rows="4" placeholder="List titles or short summaries, one per line…"></textarea>
+          </div>
+          <div class="field-group" style="max-width:220px">
+            <label class="field-label">Scope</label>
+            <select id="litScope" class="field">
+              <option value="comprehensive">Comprehensive</option>
+              <option value="brief">Brief</option>
+              <option value="focused">Focused</option>
+            </select>
+          </div>
+          <button class="btn btn-primary" onclick="runLitReview()">Build review</button>
+          <div id="litResult" class="result-area"></div>
+        </section>
+
+        <!-- HYPOTHESIS -->
+        <section class="panel-section" id="panel-hypothesis">
+          <div class="panel-head"><h3>Hypothesis Generator</h3><p>Testable hypotheses with variables, methods, and feasibility ratings.</p></div>
+          <div class="field-group">
+            <label class="field-label">Research topic</label>
+            <input type="text" id="hypTopic" class="field" placeholder="e.g. Gut microbiome and depression">
+          </div>
+          <div class="field-row">
+            <div class="field-group">
+              <label class="field-label">Additional context (optional)</label>
+              <textarea id="hypContext" class="field" rows="3"></textarea>
+            </div>
+            <div class="field-group" style="max-width:160px">
+              <label class="field-label"># of hypotheses</label>
+              <select id="hypCount" class="field">
+                <option value="1">1</option><option value="2">2</option><option value="3" selected>3</option><option value="4">4</option><option value="5">5</option>
               </select>
             </div>
           </div>
-          <div class="form-group">
-            <label class="sci-label">Paper Details</label>
-            <textarea id="citInput" class="sci-input mono" rows="7"
-              placeholder="Author(s): Smith, J., Doe, A.&#10;Title: The effect of…&#10;Journal: Nature&#10;Year: 2023&#10;Volume: 620&#10;Pages: 123–130&#10;DOI: 10.1038/s41586-023-00000-0"></textarea>
-          </div>
-          <button class="btn-primary-sci w-full ripple" onclick="runCitation()">
-            <i class="fa-solid fa-bookmark"></i> Generate Citation
-          </button>
-          <div id="citResult"></div>
-        </div>
-      </div>
+          <button class="btn btn-primary" onclick="runHypothesis()">Generate hypotheses</button>
+          <div id="hypResult" class="result-area"></div>
+        </section>
 
-      <!-- ════ LIT REVIEW ════ -->
-      <div class="panel-section" id="panel-litreview">
-        <div class="panel-hdr">
-          <h2><i class="fa-solid fa-books"></i> Literature Review Builder</h2>
-          <p>Generate a structured, 7-section academic literature review for any research topic.</p>
-        </div>
-        <div class="tool-container">
-          <div class="row g-3 mb-3">
-            <div class="col-md-8">
-              <label class="sci-label">Research Topic</label>
-              <input type="text" id="litTopic" class="sci-input" placeholder="e.g. Machine learning in drug discovery"/>
-            </div>
-            <div class="col-md-4">
-              <label class="sci-label">Scope</label>
-              <select id="litScope" class="sci-select">
-                <option value="comprehensive">Comprehensive</option>
-                <option value="brief">Brief Overview</option>
-                <option value="focused">Focused (last 5 years)</option>
-              </select>
-            </div>
+        <!-- REPORT -->
+        <section class="panel-section" id="panel-report">
+          <div class="panel-head"><h3>Research Report Drafter</h3><p>Draft a full outline or a single section of a research paper.</p></div>
+          <div class="field-group">
+            <label class="field-label">Topic / working title</label>
+            <input type="text" id="repTopic" class="field" placeholder="e.g. The role of dark matter in galaxy formation">
           </div>
-          <div class="form-group">
-            <label class="sci-label">Relevant Papers <span style="color:var(--text-muted);font-weight:400">(optional — list titles or brief descriptions)</span></label>
-            <textarea id="litPapers" class="sci-input mono" rows="5"
-              placeholder="1. Smith et al. (2022) — Deep learning for protein folding&#10;2. Jones & Lee (2023) — Transformer models in genomics&#10;…"></textarea>
-          </div>
-          <button class="btn-primary-sci w-full ripple" onclick="runLitReview()">
-            <i class="fa-solid fa-layer-group"></i> Build Literature Review
-          </button>
-          <div id="litResult"></div>
-        </div>
-      </div>
-
-      <!-- ════ HYPOTHESIS ════ -->
-      <div class="panel-section" id="panel-hypothesis">
-        <div class="panel-hdr">
-          <h2><i class="fa-solid fa-lightbulb"></i> Hypothesis Generator</h2>
-          <p>Generate novel, testable research hypotheses with variables, methods, and feasibility ratings.</p>
-        </div>
-        <div class="tool-container">
-          <div class="row g-3 mb-3">
-            <div class="col-md-8">
-              <label class="sci-label">Research Topic</label>
-              <input type="text" id="hypTopic" class="sci-input" placeholder="e.g. Neuroplasticity and meditation practice"/>
-            </div>
-            <div class="col-md-4">
-              <label class="sci-label">Number of Hypotheses</label>
-              <select id="hypCount" class="sci-select">
-                <option value="2">2</option>
-                <option value="3" selected>3</option>
-                <option value="4">4</option>
-                <option value="5">5</option>
-              </select>
-            </div>
-          </div>
-          <div class="form-group">
-            <label class="sci-label">Additional Context <span style="color:var(--text-muted);font-weight:400">(optional)</span></label>
-            <textarea id="hypContext" class="sci-input" rows="3" placeholder="Describe your current research, preliminary findings, or constraints…"></textarea>
-          </div>
-          <button class="btn-primary-sci w-full ripple" onclick="runHypothesis()">
-            <i class="fa-solid fa-flask-vial"></i> Generate Hypotheses
-          </button>
-          <div id="hypResult"></div>
-        </div>
-      </div>
-
-      <!-- ════ REPORT ════ -->
-      <div class="panel-section" id="panel-report">
-        <div class="panel-hdr">
-          <h2><i class="fa-solid fa-file-pen"></i> Research Report Drafter</h2>
-          <p>Draft complete papers or individual sections with full academic structure and rigor.</p>
-        </div>
-        <div class="tool-container">
-          <div class="row g-3 mb-3">
-            <div class="col-md-7">
-              <label class="sci-label">Research Topic / Title</label>
-              <input type="text" id="repTopic" class="sci-input" placeholder="e.g. The role of microbiome in mental health disorders"/>
-            </div>
-            <div class="col-md-5">
-              <label class="sci-label">Section to Draft</label>
-              <select id="repSection" class="sci-select">
-                <option value="full">Full Paper Outline</option>
+          <div class="field-row">
+            <div class="field-group">
+              <label class="field-label">Section</label>
+              <select id="repSection" class="field">
+                <option value="full">Full outline</option>
                 <option value="abstract">Abstract</option>
                 <option value="introduction">Introduction</option>
                 <option value="methodology">Methodology</option>
-                <option value="results">Results Framework</option>
+                <option value="results">Results</option>
                 <option value="conclusion">Conclusion</option>
               </select>
             </div>
+            <div class="field-group">
+              <label class="field-label">Notes (optional)</label>
+              <textarea id="repContext" class="field" rows="2"></textarea>
+            </div>
           </div>
-          <div class="form-group">
-            <label class="sci-label">Context / Notes <span style="color:var(--text-muted);font-weight:400">(optional)</span></label>
-            <textarea id="repContext" class="sci-input" rows="3" placeholder="Key findings, methods used, target journal, word count preferences…"></textarea>
-          </div>
-          <button class="btn-primary-sci w-full ripple" onclick="runDraftReport()">
-            <i class="fa-solid fa-pencil"></i> Draft Section
-          </button>
-          <div id="repResult"></div>
-        </div>
-      </div>
+          <button class="btn btn-primary" onclick="runDraftReport()">Draft section</button>
+          <div id="repResult" class="result-area"></div>
+        </section>
 
-      <!-- ════ EXPLORE ════ -->
-      <div class="panel-section" id="panel-explore">
-        <div class="panel-hdr">
-          <h2><i class="fa-solid fa-compass"></i> Topic Explorer</h2>
-          <p>Deep-dive any scientific topic — key concepts, frontiers, methods, seminal papers, and open questions.</p>
-        </div>
-        <div class="tool-container">
-          <div class="row g-3 mb-3">
-            <div class="col-md-8">
-              <label class="sci-label">Scientific Topic</label>
-              <input type="text" id="expTopic" class="sci-input" placeholder="e.g. Dark matter, Epigenetics, Quantum computing"/>
-            </div>
-            <div class="col-md-4">
-              <label class="sci-label">Domain</label>
-              <select id="expDomain" class="sci-select">
-                <option value="">Auto-detect</option>
-                <option value="Physics">Physics</option>
-                <option value="Chemistry">Chemistry</option>
-                <option value="Biology">Biology</option>
-                <option value="Computer Science">Computer Science</option>
-                <option value="Space & Astronomy">Space & Astronomy</option>
-                <option value="Earth Sciences">Earth Sciences</option>
-                <option value="Engineering Sciences">Engineering</option>
-                <option value="Neuroscience">Neuroscience</option>
-                <option value="Environmental Science">Environmental Science</option>
-              </select>
-            </div>
+        <!-- EXPLORE -->
+        <section class="panel-section" id="panel-explore">
+          <div class="panel-head"><h3>Topic Explorer</h3><p>A deep-dive map of a topic: concepts, theories, frontiers, and open questions.</p></div>
+          <div class="field-group">
+            <label class="field-label">Topic</label>
+            <input type="text" id="expTopic" class="field" placeholder="e.g. Quantum entanglement">
           </div>
-          <div class="qtopics">
-            <span class="qtopic-lbl">Quick:</span>
-            <span class="qtopic-chip" onclick="setField('expTopic','Dark Matter')">Dark Matter</span>
-            <span class="qtopic-chip" onclick="setField('expTopic','CRISPR')">CRISPR</span>
-            <span class="qtopic-chip" onclick="setField('expTopic','Quantum Computing')">Quantum Computing</span>
-            <span class="qtopic-chip" onclick="setField('expTopic','Climate Tipping Points')">Climate Tipping Points</span>
-            <span class="qtopic-chip" onclick="setField('expTopic','Neural Plasticity')">Neural Plasticity</span>
-            <span class="qtopic-chip" onclick="setField('expTopic','Exoplanet Atmospheres')">Exoplanets</span>
+          <div class="field-group" style="max-width:260px">
+            <label class="field-label">Domain (optional)</label>
+            <input type="text" id="expDomain" class="field" placeholder="e.g. Physics">
           </div>
-          <button class="btn-primary-sci w-full ripple" onclick="runExplore()">
-            <i class="fa-solid fa-magnifying-glass"></i> Explore Topic
-          </button>
-          <div id="expResult"></div>
-        </div>
-      </div>
+          <button class="btn btn-primary" onclick="runExplore()">Explore topic</button>
+          <div id="expResult" class="result-area"></div>
+        </section>
 
-      <!-- ════ EXPLAIN ════ -->
-      <div class="panel-section" id="panel-explain">
-        <div class="panel-hdr">
-          <h2><i class="fa-solid fa-graduation-cap"></i> Concept Explainer</h2>
-          <p>Get clear, level-appropriate explanations with analogies, notation, and real-world examples.</p>
-        </div>
-        <div class="tool-container">
-          <div class="row g-3 mb-3">
-            <div class="col-md-8">
-              <label class="sci-label">Scientific Concept</label>
-              <input type="text" id="explConcept" class="sci-input" placeholder="e.g. Wave-particle duality, Entropy, mRNA vaccines"/>
-            </div>
-            <div class="col-md-4">
-              <label class="sci-label">Explanation Level</label>
-              <select id="explLevel" class="sci-select">
-                <option value="beginner">Beginner (High School)</option>
-                <option value="intermediate" selected>Intermediate (Undergrad)</option>
-                <option value="expert">Expert (PhD Level)</option>
-              </select>
-            </div>
+        <!-- EXPLAIN -->
+        <section class="panel-section" id="panel-explain">
+          <div class="panel-head"><h3>Concept Explainer</h3><p>Explanations tuned to the reader's level.</p></div>
+          <div class="field-group">
+            <label class="field-label">Concept</label>
+            <input type="text" id="explConcept" class="field" placeholder="e.g. Wave-particle duality">
           </div>
-          <button class="btn-primary-sci w-full ripple" onclick="runExplain()">
-            <i class="fa-solid fa-circle-question"></i> Explain Concept
-          </button>
-          <div id="explResult"></div>
-        </div>
-      </div>
+          <div class="field-group">
+            <label class="field-label">Level</label>
+            <div class="pill-group">
+              <label class="pill-radio"><input type="radio" name="explLevelRadio" onclick="document.getElementById('explLevel').value='beginner'"><span>Beginner</span></label>
+              <label class="pill-radio"><input type="radio" name="explLevelRadio" checked onclick="document.getElementById('explLevel').value='intermediate'"><span>Intermediate</span></label>
+              <label class="pill-radio"><input type="radio" name="explLevelRadio" onclick="document.getElementById('explLevel').value='expert'"><span>Expert</span></label>
+            </div>
+            <input type="hidden" id="explLevel" value="intermediate">
+          </div>
+          <button class="btn btn-primary" onclick="runExplain()">Explain</button>
+          <div id="explResult" class="result-area"></div>
+        </section>
 
-      <!-- ════ COMPARE ════ -->
-      <div class="panel-section" id="panel-compare">
-        <div class="panel-hdr">
-          <h2><i class="fa-solid fa-arrows-left-right"></i> Theory Comparator</h2>
-          <p>Compare two scientific theories side-by-side — evidence, limitations, and consensus analysis.</p>
-        </div>
-        <div class="tool-container">
-          <div class="row g-3 mb-3">
-            <div class="col-md-5">
-              <label class="sci-label">Theory A</label>
-              <input type="text" id="cmpT1" class="sci-input" placeholder="e.g. General Relativity"/>
+        <!-- COMPARE -->
+        <section class="panel-section" id="panel-compare">
+          <div class="panel-head"><h3>Theory Comparator</h3><p>Overview, evidence, limitations, and current consensus, side by side.</p></div>
+          <div class="field-row">
+            <div class="field-group">
+              <label class="field-label">Theory A</label>
+              <input type="text" id="cmpTheory1" class="field" placeholder="e.g. General Relativity">
             </div>
-            <div class="col-md-2 d-flex align-items-end justify-content-center pb-1">
-              <span class="vs-badge">VS</span>
-            </div>
-            <div class="col-md-5">
-              <label class="sci-label">Theory B</label>
-              <input type="text" id="cmpT2" class="sci-input" placeholder="e.g. Quantum Mechanics"/>
+            <div class="field-group">
+              <label class="field-label">Theory B</label>
+              <input type="text" id="cmpTheory2" class="field" placeholder="e.g. Quantum Field Theory">
             </div>
           </div>
-          <div class="form-group">
-            <label class="sci-label">Scientific Domain <span style="color:var(--text-muted);font-weight:400">(optional)</span></label>
-            <input type="text" id="cmpDomain" class="sci-input" placeholder="e.g. Physics, Biology, Neuroscience"/>
+          <div class="field-group" style="max-width:260px">
+            <label class="field-label">Domain (optional)</label>
+            <input type="text" id="cmpDomain" class="field" placeholder="e.g. Physics">
           </div>
-          <button class="btn-primary-sci w-full ripple" onclick="runCompare()">
-            <i class="fa-solid fa-scale-balanced"></i> Compare Theories
-          </button>
-          <div id="cmpResult"></div>
-        </div>
-      </div>
+          <button class="btn btn-primary" onclick="runCompare()">Compare</button>
+          <div id="cmpResult" class="result-area"></div>
+        </section>
 
-    </main><!-- end main-panel -->
-  </div><!-- end app-grid -->
+      </main>
+    </div>
+  </div>
 </section>
 
-<!-- ══════════════════ FOOTER ══════════════════ -->
-<footer class="sci-footer" id="footer">
-  <div class="footer-inner">
-    <div class="footer-grid">
-      <div class="footer-brand">
-        <div class="logo-wrap">
-          <div class="logo-icon"><i class="fa-solid fa-atom"></i></div>
-          <span class="logo-text" style="color:#fff">Sci<span>Mind</span></span>
-        </div>
-        <p>An AI-powered scientific research intelligence platform built on IBM Watsonx.ai and IBM Granite models.</p>
-        <div class="footer-wx-badge"><i class="fa-solid fa-microchip"></i> Powered by IBM Watsonx.ai</div>
-      </div>
-      <div class="footer-col">
-        <h5>Tools</h5>
-        <a href="#" onclick="switchTool('chat');return false">Research Chat</a>
-        <a href="#" onclick="switchTool('summarize');return false">Paper Summarizer</a>
-        <a href="#" onclick="switchTool('citation');return false">Citation Generator</a>
-        <a href="#" onclick="switchTool('litreview');return false">Literature Review</a>
-        <a href="#" onclick="switchTool('hypothesis');return false">Hypothesis Generator</a>
-      </div>
-      <div class="footer-col">
-        <h5>More Tools</h5>
-        <a href="#" onclick="switchTool('report');return false">Report Drafter</a>
-        <a href="#" onclick="switchTool('explore');return false">Topic Explorer</a>
-        <a href="#" onclick="switchTool('explain');return false">Concept Explainer</a>
-        <a href="#" onclick="switchTool('compare');return false">Theory Comparator</a>
-      </div>
-      <div class="footer-col">
-        <h5>Resources</h5>
-        <a href="/api/health" target="_blank">API Health</a>
-        <a href="https://cloud.ibm.com/catalog/services/watsonx-ai" target="_blank">IBM Watsonx.ai</a>
-        <a href="https://www.ibm.com/granite" target="_blank">IBM Granite</a>
-        <a href="https://github.com" target="_blank">GitHub</a>
-      </div>
+<!-- ===================== FOOTER ===================== -->
+<footer class="footer">
+  <div class="container">
+    <div>
+      <div class="footer-brand"><span class="mark" style="width:24px;height:24px;background:var(--accent);color:#fff;display:flex;align-items:center;justify-content:center;font-family:var(--font-mono);font-size:11px;">Sc</span> SciMind</div>
+      <p style="color:var(--text-muted);font-size:13px;margin-top:8px;max-width:32ch">An IBM watsonx.ai + Granite internship project.</p>
     </div>
-    <div class="footer-bottom">
-      <p>&copy; 2025 SciMind — AI Scientific Research Agent. Built with IBM Watsonx.ai.</p>
-      <p>IBM Granite &nbsp;·&nbsp; Flask &nbsp;·&nbsp; Bootstrap 5</p>
+    <div class="footer-links">
+      <a href="#capabilities">Capabilities</a>
+      <a href="#app">Console</a>
+      <a href="https://www.ibm.com/watsonx" target="_blank" rel="noopener">IBM watsonx <svg class="icon" style="width:12px;height:12px;display:inline"><use href="#icon-external"></use></svg></a>
     </div>
+  </div>
+  <div class="container footer-bottom">
+    <span>© 2026 SciMind</span>
+    <span>Built on IBM Granite via watsonx.ai</span>
   </div>
 </footer>
 
-<!-- ── Loading overlay ── -->
-<div class="load-overlay d-none" id="loadOverlay">
-  <div class="load-card">
-    <div class="load-ring"></div>
-    <p id="loadMsg">SciMind is thinking…</p>
-    <small>IBM Granite · Watsonx.ai</small>
-  </div>
+<!-- ===================== LOADING / TOASTS ===================== -->
+<div id="loadingOverlay" class="d-none">
+  <div class="loader-bar"></div>
+  <div id="loadingMsg">Processing…</div>
 </div>
+<div id="toastContainer"></div>
 
-<!-- ── Toast stack ── -->
-<div class="toast-stack" id="toastStack"></div>
-
-<!-- ══════════════════════════════════════════════════════
-     GUIDED DEMO MODAL
-     ══════════════════════════════════════════════════════ -->
-<div class="demo-overlay" id="demoOverlay" role="dialog" aria-modal="true" aria-label="SciMind guided demo">
-<div class="demo-card">
-
-  <!-- Top bar -->
-  <div class="demo-topbar">
-    <div class="demo-logo">
-      <div class="logo-icon"><i class="fa-solid fa-atom"></i></div>
-      <span>Sci<em>Mind</em> &mdash; Interactive Demo</span>
-    </div>
-    <div class="demo-step-counter">Step <strong id="demoStepNum">1</strong> of <strong>10</strong></div>
-    <button class="demo-close" onclick="closeDemo()" title="Close demo (Esc)"><i class="fa-solid fa-xmark"></i></button>
-  </div>
-
-  <!-- Progress strip -->
-  <div class="demo-progress-strip">
-    <div class="demo-progress-fill" id="demoProgress" style="width:10%"></div>
-  </div>
-
-  <!-- Slide stage -->
-  <div class="demo-stage">
-    <div class="demo-slides" id="demoSlides">
-
-      <!-- ── STEP 1: Welcome ── -->
-      <div class="demo-slide" id="dslide-0">
-        <div class="step-glow"></div>
-        <div class="demo-step-icon">🧠</div>
-        <h2 class="demo-title">Welcome to <span>SciMind</span> 👋</h2>
-        <p class="demo-desc">SciMind is your AI-powered scientific research companion built on <strong style="color:var(--accent)">IBM Granite · Watsonx.ai</strong>. In the next 10 steps, we'll show you everything it can do. Let's begin!</p>
-        <div style="display:flex;gap:20px;flex-wrap:wrap;justify-content:center">
-          <div style="text-align:center;padding:14px 20px;background:rgba(0,176,255,.08);border:1px solid rgba(0,176,255,.18);border-radius:12px;min-width:100px">
-            <div style="font-family:'Poppins',sans-serif;font-size:28px;font-weight:800;color:#fff">9</div>
-            <div style="font-size:11px;color:rgba(255,255,255,.45);letter-spacing:.5px">Research Tools</div>
-          </div>
-          <div style="text-align:center;padding:14px 20px;background:rgba(124,77,255,.08);border:1px solid rgba(124,77,255,.18);border-radius:12px;min-width:100px">
-            <div style="font-family:'Poppins',sans-serif;font-size:28px;font-weight:800;color:#fff">10</div>
-            <div style="font-size:11px;color:rgba(255,255,255,.45);letter-spacing:.5px">Scientific Domains</div>
-          </div>
-          <div style="text-align:center;padding:14px 20px;background:rgba(0,200,83,.08);border:1px solid rgba(0,200,83,.18);border-radius:12px;min-width:100px">
-            <div style="font-family:'Poppins',sans-serif;font-size:28px;font-weight:800;color:#fff">5</div>
-            <div style="font-size:11px;color:rgba(255,255,255,.45);letter-spacing:.5px">Citation Styles</div>
-          </div>
-        </div>
-      </div>
-
-      <!-- ── STEP 2: Chat ── -->
-      <div class="demo-slide" id="dslide-1">
-        <div class="step-glow"></div>
-        <div class="demo-step-icon">💬</div>
-        <h2 class="demo-title"><span>AI Research</span> Chat</h2>
-        <p class="demo-desc">Ask any scientific question and get detailed, accurate answers instantly across 10 scientific domains.</p>
-        <div class="mockup">
-          <div class="demo-watermark">DEMO</div>
-          <div class="mockup-bar">
-            <span class="mockup-dot"></span><span class="mockup-dot"></span><span class="mockup-dot"></span>
-            <span class="mockup-bar-title">Research Chat &mdash; Physics Domain</span>
-          </div>
-          <div class="mockup-body">
-            <div class="mk-bubble mk-user">
-              <div class="mk-av usr"><i class="fa-solid fa-user"></i></div>
-              <div class="mk-msg">What is quantum entanglement?</div>
-            </div>
-            <div class="mk-bubble" id="demo-chat-bubble" style="display:none">
-              <div class="mk-av ai"><i class="fa-solid fa-robot"></i></div>
-              <div class="mk-msg">
-                <strong style="color:var(--accent)">Quantum entanglement</strong> is a phenomenon where two particles become correlated so that the quantum state of one instantly influences the other, regardless of distance.<br/><br/>
-                This non-local correlation defies classical physics and is foundational to <em>quantum computing</em> and <em>quantum cryptography</em>.
-                <div class="mk-granite"><i class="fa-solid fa-microchip"></i> IBM Granite</div>
-              </div>
-            </div>
-            <div class="mk-bubble" id="demo-chat-typing">
-              <div class="mk-av ai"><i class="fa-solid fa-robot"></i></div>
-              <div class="mk-msg"><div class="mk-typing"><span></span><span></span><span></span></div></div>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <!-- ── STEP 3: Summarize ── -->
-      <div class="demo-slide" id="dslide-2">
-        <div class="step-glow"></div>
-        <div class="demo-step-icon">📄</div>
-        <h2 class="demo-title"><span>Paper</span> Summarizer</h2>
-        <p class="demo-desc">Paste any research paper abstract or full text and get structured summaries in Brief, Detailed, or Technical style.</p>
-        <div class="mockup">
-          <div class="demo-watermark">DEMO</div>
-          <div class="mockup-bar">
-            <span class="mockup-dot"></span><span class="mockup-dot"></span><span class="mockup-dot"></span>
-            <span class="mockup-bar-title">Paper Summarizer &mdash; Detailed Mode</span>
-          </div>
-          <div class="mockup-body">
-            <div class="mk-label">Paper Abstract</div>
-            <div class="mk-input mk-cursor-blink" id="demo-sum-input">We investigate the role of transformer architectures in protein structure prediction...</div>
-            <div class="mk-label" style="margin-top:10px">AI Summary</div>
-            <div class="mk-result anim-fade" id="demo-sum-result">
-              <strong>Objective:</strong> Investigate transformer models for protein folding.<br/>
-              <strong>Methods:</strong> Deep learning + multiple sequence alignment.<br/>
-              <strong>Key Finding:</strong> 92% accuracy on CASP14 benchmark — surpassing all prior methods.
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <!-- ── STEP 4: Citation ── -->
-      <div class="demo-slide" id="dslide-3">
-        <div class="step-glow"></div>
-        <div class="demo-step-icon">🔖</div>
-        <h2 class="demo-title"><span>Citation</span> Generator</h2>
-        <p class="demo-desc">Generate perfectly formatted citations in 5 styles: APA, IEEE, Nature, Science, and MLA — instantly.</p>
-        <div class="mockup">
-          <div class="demo-watermark">DEMO</div>
-          <div class="mockup-bar">
-            <span class="mockup-dot"></span><span class="mockup-dot"></span><span class="mockup-dot"></span>
-            <span class="mockup-bar-title">Citation Generator &mdash; APA Style</span>
-          </div>
-          <div class="mockup-body">
-            <div class="mk-label">Paper Details</div>
-            <div class="mk-input" style="font-size:11.5px;line-height:1.6">
-              Author: Jumper, J. et al.<br/>
-              Title: Highly accurate protein structure prediction with AlphaFold<br/>
-              Journal: Nature &bull; Year: 2021 &bull; Volume: 596 &bull; Pages: 583-589
-            </div>
-            <div class="mk-label" style="margin-top:10px">APA Citation</div>
-            <div class="mk-citation anim-fade" id="demo-cit-result">
-              Jumper, J., Evans, R., Pritzel, A., Green, T., Figurnov, M., Ronneberger, O., ... &amp; Hassabis, D. (2021). Highly accurate protein structure prediction with AlphaFold. <em>Nature</em>, <em>596</em>(7873), 583–589. https://doi.org/10.1038/s41586-021-03819-2
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <!-- ── STEP 5: Lit Review ── -->
-      <div class="demo-slide" id="dslide-4">
-        <div class="step-glow"></div>
-        <div class="demo-step-icon">📚</div>
-        <h2 class="demo-title"><span>Literature Review</span> Builder</h2>
-        <p class="demo-desc">Build complete structured literature reviews with Introduction, Findings, Research Gaps, and Future Directions.</p>
-        <div class="mockup">
-          <div class="demo-watermark">DEMO</div>
-          <div class="mockup-bar">
-            <span class="mockup-dot"></span><span class="mockup-dot"></span><span class="mockup-dot"></span>
-            <span class="mockup-bar-title">Literature Review Builder</span>
-          </div>
-          <div class="mockup-body">
-            <div class="mk-label">Topic</div>
-            <div class="mk-input">CRISPR Gene Editing Therapeutics</div>
-            <div class="mk-label" style="margin-top:10px">Review Structure</div>
-            <div id="demo-lit-sections">
-              <div class="mk-section anim-fade"><i class="fa-solid fa-circle-check"></i> 1. Introduction &amp; Scope</div>
-              <div class="mk-section anim-fade" style="transition-delay:.15s"><i class="fa-solid fa-circle-check"></i> 2. Theoretical Background</div>
-              <div class="mk-section anim-fade" style="transition-delay:.3s"><i class="fa-solid fa-circle-check"></i> 3. Methodology Overview</div>
-              <div class="mk-section anim-fade" style="transition-delay:.45s"><i class="fa-solid fa-circle-check"></i> 4. Key Findings &amp; Trends</div>
-              <div class="mk-section anim-fade" style="transition-delay:.6s"><i class="fa-solid fa-circle-check"></i> 5. Research Gaps</div>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <!-- ── STEP 6: Hypothesis ── -->
-      <div class="demo-slide" id="dslide-5">
-        <div class="step-glow"></div>
-        <div class="demo-step-icon">💡</div>
-        <h2 class="demo-title"><span>Hypothesis</span> Generator</h2>
-        <p class="demo-desc">Generate novel, testable research hypotheses with variables, methods, and feasibility ratings.</p>
-        <div class="mockup">
-          <div class="demo-watermark">DEMO</div>
-          <div class="mockup-bar">
-            <span class="mockup-dot"></span><span class="mockup-dot"></span><span class="mockup-dot"></span>
-            <span class="mockup-bar-title">Hypothesis Generator &mdash; 3 Hypotheses</span>
-          </div>
-          <div class="mockup-body">
-            <div class="mk-label">Topic</div>
-            <div class="mk-input">Dark Matter Direct Detection</div>
-            <div id="demo-hyp-cards">
-              <div class="mk-hyp-card anim-fade">
-                <div class="mk-h-title">H1: WIMPs interact via spin-dependent scattering</div>
-                If WIMPs couple to nuclear spin, germanium detectors will show annual modulation correlated with Earth's orbit.
-                <span class="mk-badge high">Novelty: High</span>
-                <span class="mk-badge med" style="margin-left:4px">Feasibility: Med</span>
-              </div>
-              <div class="mk-hyp-card anim-fade" style="transition-delay:.2s">
-                <div class="mk-h-title">H2: Axion dark matter produces photon conversion in strong B-fields</div>
-                Axions couple to photons; cavities with strong magnetic fields will detect excess microwave signals.
-                <span class="mk-badge high">Novelty: High</span>
-                <span class="mk-badge high" style="margin-left:4px">Feasibility: High</span>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <!-- ── STEP 7: Draft Report ── -->
-      <div class="demo-slide" id="dslide-6">
-        <div class="step-glow"></div>
-        <div class="demo-step-icon">📝</div>
-        <h2 class="demo-title"><span>Research Report</span> Drafter</h2>
-        <p class="demo-desc">Draft complete research paper sections or full papers with academic writing style and structure.</p>
-        <div class="mockup">
-          <div class="demo-watermark">DEMO</div>
-          <div class="mockup-bar">
-            <span class="mockup-dot"></span><span class="mockup-dot"></span><span class="mockup-dot"></span>
-            <span class="mockup-bar-title">Report Drafter &mdash; Abstract</span>
-          </div>
-          <div class="mockup-body">
-            <div class="mk-label">Section: Abstract</div>
-            <div class="mk-input">Microbiome influence on neurological disorders</div>
-            <div class="mk-label" style="margin-top:10px">Generated Abstract</div>
-            <div class="mk-result anim-fade" id="demo-rep-result">
-              This study examines the bidirectional gut-brain axis and its role in neurological disorders. We analyze microbiome composition in 450 patients with major depressive disorder, finding significant correlations between <strong style="color:var(--accent)">Lactobacillus depletion</strong> and symptom severity (r = 0.73, p &lt; 0.001).
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <!-- ── STEP 8: Topic Explorer ── -->
-      <div class="demo-slide" id="dslide-7">
-        <div class="step-glow"></div>
-        <div class="demo-step-icon">🔭</div>
-        <h2 class="demo-title"><span>Topic</span> Explorer</h2>
-        <p class="demo-desc">Explore any scientific topic deeply with key concepts, current frontiers, research methods, and open questions.</p>
-        <div class="mockup">
-          <div class="demo-watermark">DEMO</div>
-          <div class="mockup-bar">
-            <span class="mockup-dot"></span><span class="mockup-dot"></span><span class="mockup-dot"></span>
-            <span class="mockup-bar-title">Topic Explorer &mdash; Computer Science</span>
-          </div>
-          <div class="mockup-body">
-            <div class="mk-label">Topic</div>
-            <div class="mk-input">Quantum Computing</div>
-            <div id="demo-exp-sections">
-              <div class="mk-section anim-fade"><i class="fa-solid fa-atom"></i> Topic Overview &amp; Significance</div>
-              <div class="mk-section anim-fade" style="transition-delay:.12s"><i class="fa-solid fa-key"></i> Key Concepts: Qubits, Superposition, Entanglement</div>
-              <div class="mk-section anim-fade" style="transition-delay:.24s"><i class="fa-solid fa-microscope"></i> Current Frontiers: Error correction, 1000+ qubit systems</div>
-              <div class="mk-section anim-fade" style="transition-delay:.36s"><i class="fa-solid fa-question-circle"></i> Open Question: Fault-tolerant quantum advantage</div>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <!-- ── STEP 9: Compare Theories ── -->
-      <div class="demo-slide" id="dslide-8">
-        <div class="step-glow"></div>
-        <div class="demo-step-icon">⚖️</div>
-        <h2 class="demo-title"><span>Theory</span> Comparator</h2>
-        <p class="demo-desc">Compare two scientific theories side-by-side with evidence, limitations, and current scientific consensus.</p>
-        <div class="mockup">
-          <div class="demo-watermark">DEMO</div>
-          <div class="mockup-bar">
-            <span class="mockup-dot"></span><span class="mockup-dot"></span><span class="mockup-dot"></span>
-            <span class="mockup-bar-title">Theory Comparator &mdash; Physics</span>
-          </div>
-          <div class="mockup-body" style="padding:12px">
-            <div class="mk-vs-row anim-fade" id="demo-cmp-result">
-              <div class="mk-vs-col">
-                <div class="mk-col-title"><i class="fa-solid fa-circle-a"></i> General Relativity</div>
-                <ul style="list-style:none;padding:0;font-size:12px">
-                  <li>Describes gravity as spacetime curvature</li>
-                  <li>Confirmed: gravitational waves, black holes</li>
-                  <li>Breaks down at quantum scales</li>
-                </ul>
-              </div>
-              <div class="mk-vs-sep"><div class="mk-vs-badge">VS</div></div>
-              <div class="mk-vs-col">
-                <div class="mk-col-title"><i class="fa-solid fa-circle-b"></i> Quantum Mechanics</div>
-                <ul style="list-style:none;padding:0;font-size:12px">
-                  <li>Governs subatomic particles</li>
-                  <li>Confirmed: transistors, MRI, lasers</li>
-                  <li>Does not incorporate gravity</li>
-                </ul>
-              </div>
-            </div>
-            <div class="mk-result" style="margin-top:10px;font-size:12px">
-              <strong style="color:var(--accent)">Consensus:</strong> Both are correct in their domains. Unification via <em>quantum gravity</em> remains an open problem.
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <!-- ── STEP 10: Finish ── -->
-      <div class="demo-slide" id="dslide-9">
-        <div class="step-glow"></div>
-        <div class="demo-step-icon">🚀</div>
-        <h2 class="demo-title">You're <span>Ready!</span></h2>
-        <p class="demo-desc">You now know everything SciMind can do. Start your research journey powered by <strong style="color:var(--accent)">IBM Watsonx.ai</strong> and <strong style="color:var(--accent2)">IBM Granite AI</strong>.</p>
-        <div class="finish-tools">
-          <div class="ft-item"><span class="ft-icon">💬</span>Research Chat<div class="ft-check"><i class="fa-solid fa-check"></i></div></div>
-          <div class="ft-item"><span class="ft-icon">📄</span>Summarizer<div class="ft-check"><i class="fa-solid fa-check"></i></div></div>
-          <div class="ft-item"><span class="ft-icon">🔖</span>Citation Gen<div class="ft-check"><i class="fa-solid fa-check"></i></div></div>
-          <div class="ft-item"><span class="ft-icon">📚</span>Lit Review<div class="ft-check"><i class="fa-solid fa-check"></i></div></div>
-          <div class="ft-item"><span class="ft-icon">💡</span>Hypothesis<div class="ft-check"><i class="fa-solid fa-check"></i></div></div>
-          <div class="ft-item"><span class="ft-icon">📝</span>Report Draft<div class="ft-check"><i class="fa-solid fa-check"></i></div></div>
-          <div class="ft-item"><span class="ft-icon">🔭</span>Topic Explorer<div class="ft-check"><i class="fa-solid fa-check"></i></div></div>
-          <div class="ft-item"><span class="ft-icon">🎓</span>Explainer<div class="ft-check"><i class="fa-solid fa-check"></i></div></div>
-          <div class="ft-item"><span class="ft-icon">⚖️</span>Comparator<div class="ft-check"><i class="fa-solid fa-check"></i></div></div>
-        </div>
-        <button class="demo-btn demo-btn-primary ripple" onclick="finishDemo()" style="font-size:15px;padding:13px 36px">
-          <i class="fa-solid fa-flask"></i> Start Researching Now
-        </button>
-      </div>
-
-    </div><!-- end demo-slides -->
-  </div><!-- end demo-stage -->
-
-  <!-- Bottom nav -->
-  <div class="demo-nav">
-    <button class="demo-btn demo-btn-ghost" id="demoPrevBtn" onclick="demoStep(-1)">
-      <i class="fa-solid fa-arrow-left"></i> Previous
-    </button>
-    <div class="demo-dots" id="demoDots"></div>
-    <div style="display:flex;gap:8px;align-items:center">
-      <button class="demo-btn demo-btn-skip" onclick="closeDemo()">Skip tour</button>
-      <button class="demo-btn demo-btn-primary" id="demoNextBtn" onclick="demoStep(1)">
-        Next <i class="fa-solid fa-arrow-right"></i>
-      </button>
-    </div>
-  </div>
-
-</div><!-- end demo-card -->
-</div><!-- end demo-overlay -->
-
-<!-- Bootstrap 5 -->
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
-<!-- Marked.js -->
 <script src="https://cdn.jsdelivr.net/npm/marked@12.0.0/marked.min.js"></script>
-
-<script>
-"use strict";
-
-/* ═══════════════════════════════════════════
-   STATE
-   ═══════════════════════════════════════════ */
-let chatHistory = [];
-let isBusy      = false;
-
-/* ═══════════════════════════════════════════
-   INIT
-   ═══════════════════════════════════════════ */
-document.addEventListener("DOMContentLoaded", () => {
-  initTheme();
-  initNav();
-  initSidebar();
-  initDomainSync();
-  initChatInput();
-  initRipples();
-  initStylePills();
-  initParticles();
-  initTypewriter();
-  initNavbarScroll();
-});
-
-/* ═══════════════════════════════════════════
-   THEME
-   ═══════════════════════════════════════════ */
-function initTheme() {
-  const saved = localStorage.getItem("scimind-theme") || "dark";
-  setTheme(saved);
-  document.getElementById("themeBtn").addEventListener("click", () => {
-    setTheme(document.documentElement.getAttribute("data-theme") === "dark" ? "light" : "dark");
-  });
-}
-function setTheme(t) {
-  document.documentElement.setAttribute("data-theme", t);
-  localStorage.setItem("scimind-theme", t);
-  document.getElementById("themeIcon").className = t === "dark" ? "fa-solid fa-sun" : "fa-solid fa-moon";
-}
-
-/* ═══════════════════════════════════════════
-   NAVBAR SCROLL
-   ═══════════════════════════════════════════ */
-function initNavbarScroll() {
-  const nav = document.getElementById("mainNav");
-  window.addEventListener("scroll", () => {
-    nav.classList.toggle("scrolled", window.scrollY > 40);
-    // active nav link
-    const inApp = window.scrollY > window.innerHeight * 0.6;
-    document.querySelectorAll(".nav-links a").forEach(a => a.classList.remove("active"));
-    document.querySelector(inApp ? ".nav-links a[href='#app']" : ".nav-links a[href='#hero']")?.classList.add("active");
-  }, {passive:true});
-}
-
-/* ═══════════════════════════════════════════
-   SIDEBAR / PANEL NAV
-   ═══════════════════════════════════════════ */
-function initNav() {
-  document.querySelectorAll(".nav-links a").forEach(a => {
-    a.addEventListener("click", e => {
-      if (a.getAttribute("href").startsWith("#")) return;
-      e.preventDefault();
-    });
-  });
-}
-
-function initSidebar() {
-  document.querySelectorAll(".tool-card").forEach(card => {
-    card.addEventListener("click", () => {
-      const panel = card.dataset.panel;
-      switchTool(panel);
-    });
-  });
-}
-
-function switchTool(panelId) {
-  // update sidebar
-  document.querySelectorAll(".tool-card").forEach(c => c.classList.toggle("active", c.dataset.panel === panelId));
-  // update panels
-  document.querySelectorAll(".panel-section").forEach(p => p.classList.remove("active"));
-  const target = document.getElementById("panel-" + panelId);
-  if (target) target.classList.add("active");
-  // scroll to app on mobile
-  if (window.innerWidth < 992) {
-    document.getElementById("app").scrollIntoView({behavior:"smooth", block:"start"});
-  }
-}
-
-/* ═══════════════════════════════════════════
-   DOMAIN SYNC (pills + navbar select + sidebar select)
-   ═══════════════════════════════════════════ */
-function initDomainSync() {
-  // pill clicks
-  document.querySelectorAll(".domain-pill").forEach(pill => {
-    pill.addEventListener("click", () => {
-      document.querySelectorAll(".domain-pill").forEach(p => p.classList.remove("active"));
-      pill.classList.add("active");
-      syncDomainSelects(pill.dataset.domain);
-    });
-  });
-  // navbar select
-  document.getElementById("globalDomain").addEventListener("change", function() {
-    syncDomainPills(this.value);
-    document.getElementById("sidebarDomain").value = this.value;
-  });
-  // sidebar select
-  document.getElementById("sidebarDomain").addEventListener("change", function() {
-    syncDomainPills(this.value);
-    document.getElementById("globalDomain").value = this.value;
-  });
-}
-function syncDomainSelects(domain) {
-  ["globalDomain","sidebarDomain"].forEach(id => {
-    const sel = document.getElementById(id);
-    for (let i = 0; i < sel.options.length; i++) {
-      if (sel.options[i].value === domain) { sel.selectedIndex = i; break; }
-    }
-  });
-}
-function syncDomainPills(domain) {
-  document.querySelectorAll(".domain-pill").forEach(p => p.classList.toggle("active", p.dataset.domain === domain));
-}
-function getActiveDomain() {
-  return document.getElementById("globalDomain").value || "General Science";
-}
-
-/* ═══════════════════════════════════════════
-   CHAT
-   ═══════════════════════════════════════════ */
-function initChatInput() {
-  const ta = document.getElementById("chatInput");
-  if (!ta) return;
-  ta.addEventListener("input", () => { ta.style.height = "auto"; ta.style.height = Math.min(ta.scrollHeight, 130) + "px"; });
-  ta.addEventListener("keydown", e => {
-    if ((e.key === "Enter" && !e.shiftKey) || (e.key === "Enter" && e.ctrlKey)) {
-      e.preventDefault(); sendChat();
-    }
-  });
-}
-
-async function sendChat() {
-  const ta  = document.getElementById("chatInput");
-  const msg = ta?.value?.trim();
-  if (!msg || isBusy) return;
-
-  appendBubble("user", msg);
-  chatHistory.push({role:"user", content:msg});
-  ta.value = ""; ta.style.height = "auto";
-
-  const tid = appendTyping();
-  startProgress();
-
-  try {
-    const res = await apiPost("/api/chat", {message:msg, history:chatHistory.slice(-8), domain:getActiveDomain()});
-    removeTyping(tid);
-    const reply = res.response || "No response.";
-    appendBubble("ai", reply);
-    chatHistory.push({role:"assistant", content:reply});
-  } catch(err) {
-    removeTyping(tid);
-    appendBubble("ai", "**Error:** " + escHtml(err.message));
-    showToast("API error: " + err.message, "error");
-  } finally {
-    endProgress();
-  }
-}
-
-function qPrompt(text) { const ta = document.getElementById("chatInput"); if(ta){ta.value=text;sendChat();} }
-
-function appendBubble(role, md) {
-  const container = document.getElementById("chatMsgs");
-  container.querySelector(".chat-welcome")?.remove();
-  const isUser = role === "user";
-  const html = isUser ? escHtml(md).replace(/\n/g,"<br>") : renderMd(md);
-  const now  = new Date().toLocaleTimeString([],{hour:"2-digit",minute:"2-digit"});
-  const div  = document.createElement("div");
-  div.className = "bubble " + (isUser ? "user" : "ai");
-  div.innerHTML = `
-    <div class="bub-avatar ${isUser?"usr":"ai"}">
-      <i class="fa-solid ${isUser?"fa-user":"fa-robot"}"></i>
-    </div>
-    <div class="bub-body">
-      <div class="bub-content">${html}</div>
-      ${!isUser ? `<div class="granite-tag"><i class="fa-solid fa-microchip"></i> IBM Granite</div>` : ""}
-      <div class="bub-footer">
-        <span class="bub-time">${now}</span>
-        <div class="bub-actions">
-          ${!isUser ? `<button class="bub-btn" title="Copy" onclick="copyElem(this)"><i class="fa-regular fa-copy"></i></button>` : ""}
-        </div>
-      </div>
-    </div>`;
-  container.appendChild(div);
-  container.scrollTop = container.scrollHeight;
-}
-
-function appendTyping() {
-  const id = "ty-" + Date.now();
-  const container = document.getElementById("chatMsgs");
-  const div = document.createElement("div");
-  div.id = id; div.className = "bubble ai";
-  div.innerHTML = `<div class="bub-avatar ai"><i class="fa-solid fa-robot"></i></div><div class="bub-body"><div class="typing"><span></span><span></span><span></span></div></div>`;
-  container.appendChild(div);
-  container.scrollTop = container.scrollHeight;
-  return id;
-}
-function removeTyping(id) { document.getElementById(id)?.remove(); }
-
-function clearChat() {
-  chatHistory = [];
-  document.getElementById("chatMsgs").innerHTML = `
-    <div class="chat-welcome">
-      <div class="welcome-orb"><i class="fa-solid fa-robot"></i></div>
-      <h3>Welcome to SciMind</h3>
-      <p>Your AI research companion powered by IBM Granite. Start with a question or pick a topic.</p>
-      <div class="quick-grid">
-        <span class="quick-chip" onclick="qPrompt('Explain quantum entanglement and its role in quantum computing.')">Quantum Entanglement</span>
-        <span class="quick-chip" onclick="qPrompt('What are the latest breakthroughs in CRISPR gene editing?')">CRISPR Breakthroughs</span>
-        <span class="quick-chip" onclick="qPrompt('Summarize the current state of climate change science.')">Climate Science</span>
-        <span class="quick-chip" onclick="qPrompt('What are the biggest open problems in theoretical physics?')">Open Physics Problems</span>
-      </div>
-    </div>`;
-}
-
-/* ═══════════════════════════════════════════
-   TOOL HANDLERS
-   ═══════════════════════════════════════════ */
-async function runSummarize() {
-  const text  = document.getElementById("sumInput")?.value?.trim();
-  const style = document.querySelector(".style-pill.active")?.dataset?.style || "detailed";
-  if (!text) return showToast("Please paste paper text first.", "warn");
-  const res = await callApi("/api/summarize", {text, style}, "Summarizing paper…", "sumResult", "Summary");
-}
-
-async function runCitation() {
-  const info  = document.getElementById("citInput")?.value?.trim();
-  const style = document.getElementById("citStyle")?.value || "APA";
-  if (!info) return showToast("Please enter paper details.", "warn");
-  await callApi("/api/citation", {info, style}, `Generating ${style} citation…`, "citResult", `${style} Citation`);
-}
-
-async function runLitReview() {
-  const topic  = document.getElementById("litTopic")?.value?.trim();
-  const papers = document.getElementById("litPapers")?.value?.trim();
-  const scope  = document.getElementById("litScope")?.value || "comprehensive";
-  if (!topic) return showToast("Please enter a research topic.", "warn");
-  await callApi("/api/literature-review", {topic, papers, scope}, "Building literature review…", "litResult", "Literature Review: " + topic);
-}
-
-async function runHypothesis() {
-  const topic   = document.getElementById("hypTopic")?.value?.trim();
-  const context = document.getElementById("hypContext")?.value?.trim();
-  const count   = parseInt(document.getElementById("hypCount")?.value || "3");
-  if (!topic) return showToast("Please enter a research topic.", "warn");
-  const res = await callApi("/api/hypothesis", {topic, context, count}, "Generating hypotheses…", "hypResult", `${count} Hypotheses: ${topic}`, "hypotheses");
-}
-
-async function runDraftReport() {
-  const topic   = document.getElementById("repTopic")?.value?.trim();
-  const section = document.getElementById("repSection")?.value || "full";
-  const context = document.getElementById("repContext")?.value?.trim();
-  if (!topic) return showToast("Please enter a research topic.", "warn");
-  await callApi("/api/draft-report", {topic, section, context}, "Drafting report section…", "repResult", `Draft — ${section.toUpperCase()}: ${topic}`, "draft");
-}
-
-async function runExplore() {
-  const topic  = document.getElementById("expTopic")?.value?.trim();
-  const domain = document.getElementById("expDomain")?.value?.trim();
-  if (!topic) return showToast("Please enter a scientific topic.", "warn");
-  await callApi("/api/explore-topic", {topic, domain}, "Exploring topic…", "expResult", "Topic: " + topic, "exploration");
-}
-
-async function runExplain() {
-  const concept = document.getElementById("explConcept")?.value?.trim();
-  const level   = document.getElementById("explLevel")?.value || "intermediate";
-  if (!concept) return showToast("Please enter a concept.", "warn");
-  await callApi("/api/explain", {concept, level}, "Explaining concept…", "explResult", `${concept} (${level})`, "explanation");
-}
-
-async function runCompare() {
-  const theory1 = document.getElementById("cmpT1")?.value?.trim();
-  const theory2 = document.getElementById("cmpT2")?.value?.trim();
-  const domain  = document.getElementById("cmpDomain")?.value?.trim();
-  if (!theory1 || !theory2) return showToast("Please enter both theories.", "warn");
-  await callApi("/api/compare-theories", {theory1, theory2, domain}, "Comparing theories…", "cmpResult", `${theory1} vs ${theory2}`, "comparison");
-}
-
-/* ═══════════════════════════════════════════
-   GENERIC API CALLER
-   ═══════════════════════════════════════════ */
-async function callApi(endpoint, body, loadMsg, resultId, title, responseKey) {
-  setLoading(true, loadMsg);
-  showSkeleton(resultId);
-  startProgress();
-  try {
-    const data = await apiPost(endpoint, body);
-    const keys = responseKey
-      ? [responseKey]
-      : ["response","summary","citation","review","hypotheses","draft","exploration","explanation","comparison"];
-    let text = "";
-    for (const k of keys) { if (data[k]) { text = data[k]; break; } }
-    showResult(resultId, text, title);
-    showToast("Response generated successfully.", "success");
-    document.getElementById(resultId)?.scrollIntoView({behavior:"smooth", block:"nearest"});
-  } catch(err) {
-    showResult(resultId, "**Error:** " + escHtml(err.message), "Error");
-    showToast("Error: " + err.message, "error");
-  } finally {
-    setLoading(false);
-    endProgress();
-  }
-}
-
-async function apiPost(endpoint, body) {
-  const res = await fetch(endpoint, {
-    method:"POST",
-    headers:{"Content-Type":"application/json"},
-    body:JSON.stringify(body),
-  });
-  const data = await res.json();
-  if (!res.ok) throw new Error(data.error || `HTTP ${res.status}`);
-  return data;
-}
-
-/* ═══════════════════════════════════════════
-   RESULT RENDERING
-   ═══════════════════════════════════════════ */
-function showResult(containerId, markdown, title) {
-  const el = document.getElementById(containerId);
-  if (!el) return;
-  const html = renderMd(markdown);
-  el.innerHTML = `
-    <div class="result-card">
-      <div class="result-topbar">
-        <div class="result-label">
-          <i class="fa-solid fa-microchip"></i>
-          ${escHtml(title || "Result")}
-        </div>
-        <div class="result-actions">
-          <button class="res-btn" onclick="copyResult('${containerId}')"><i class="fa-regular fa-copy"></i> Copy</button>
-          <button class="res-btn" onclick="exportPdf('${containerId}','${escHtml(title||'Result')}')"><i class="fa-solid fa-file-pdf"></i> PDF</button>
-        </div>
-      </div>
-      <div class="result-body">
-        <div class="md-content" id="${containerId}-content">${html}</div>
-        <div class="granite-tag" style="margin-top:12px"><i class="fa-solid fa-microchip"></i> Generated by IBM Granite · Watsonx.ai</div>
-      </div>
-    </div>`;
-}
-
-function showSkeleton(containerId) {
-  const el = document.getElementById(containerId);
-  if (!el) return;
-  el.innerHTML = `
-    <div class="result-card" style="padding:20px 22px">
-      <div class="skel-line full skeleton"></div>
-      <div class="skel-line med skeleton"></div>
-      <div class="skel-line full skeleton"></div>
-      <div class="skel-line short skeleton"></div>
-      <div class="skel-line full skeleton"></div>
-      <div class="skel-line med skeleton"></div>
-    </div>`;
-}
-
-/* ═══════════════════════════════════════════
-   COPY / EXPORT
-   ═══════════════════════════════════════════ */
-function copyResult(containerId) {
-  const el = document.getElementById(containerId + "-content");
-  if (!el) return;
-  copyToClipboard(el.innerText);
-}
-function copyElem(btn) {
-  const content = btn.closest(".bub-body")?.querySelector(".bub-content");
-  if (content) copyToClipboard(content.innerText);
-}
-function copyToClipboard(text) {
-  navigator.clipboard.writeText(text).then(() => {
-    const tip = document.createElement("div");
-    tip.className = "copy-tip";
-    tip.innerHTML = '<i class="fa-solid fa-check"></i> Copied!';
-    document.body.appendChild(tip);
-    setTimeout(() => tip.remove(), 1600);
-  }).catch(() => showToast("Copy failed — please copy manually.", "error"));
-}
-function exportPdf(containerId, title) {
-  const el = document.getElementById(containerId + "-content");
-  if (!el) return;
-  const win = window.open("", "_blank");
-  win.document.write(`<!DOCTYPE html><html><head><title>${escHtml(title)}</title>
-    <style>body{font-family:Georgia,serif;max-width:800px;margin:40px auto;color:#1a1a2e;line-height:1.7}
-    h1,h2,h3{font-family:sans-serif}pre{background:#f4f4f4;padding:12px;border-radius:6px}
-    code{background:#f0f0f0;padding:2px 5px;border-radius:3px}</style></head>
-    <body><h1>${escHtml(title)}</h1>${el.innerHTML}</body></html>`);
-  win.document.close();
-  setTimeout(() => win.print(), 600);
-}
-
-/* ═══════════════════════════════════════════
-   LOADING / PROGRESS
-   ═══════════════════════════════════════════ */
-function setLoading(show, msg) {
-  isBusy = show;
-  const ov = document.getElementById("loadOverlay");
-  if (!ov) return;
-  if (show) { document.getElementById("loadMsg").textContent = msg || "Processing…"; ov.classList.remove("d-none"); }
-  else       { ov.classList.add("d-none"); }
-}
-
-let _progTimer = null;
-function startProgress() {
-  const bar = document.getElementById("progressBar");
-  if (!bar) return;
-  let w = 0;
-  bar.style.width = "0%";
-  bar.style.display = "block";
-  _progTimer = setInterval(() => { w = Math.min(w + Math.random() * 8, 88); bar.style.width = w + "%"; }, 250);
-}
-function endProgress() {
-  clearInterval(_progTimer);
-  const bar = document.getElementById("progressBar");
-  if (bar) { bar.style.width = "100%"; setTimeout(() => { bar.style.width = "0%"; }, 500); }
-}
-
-/* ═══════════════════════════════════════════
-   TOASTS
-   ═══════════════════════════════════════════ */
-function showToast(msg, type = "info") {
-  const stack = document.getElementById("toastStack");
-  if (!stack) return;
-  const icons = {success:"fa-check-circle", error:"fa-circle-xmark", info:"fa-circle-info", warn:"fa-triangle-exclamation"};
-  const div = document.createElement("div");
-  div.className = "sci-toast";
-  div.innerHTML = `
-    <div class="toast-icon ${type==="warn"?"warn":type}"><i class="fa-solid ${icons[type]||icons.info}"></i></div>
-    <span class="toast-msg">${escHtml(msg)}</span>
-    <button class="toast-close" onclick="this.closest('.sci-toast').remove()"><i class="fa-solid fa-xmark"></i></button>`;
-  stack.appendChild(div);
-  setTimeout(() => div.remove(), 4200);
-}
-
-/* ═══════════════════════════════════════════
-   HELPERS
-   ═══════════════════════════════════════════ */
-function renderMd(text) {
-  if (typeof marked === "undefined") return escHtml(text).replace(/\n/g,"<br>");
-  return marked.parse(String(text), {breaks:true, gfm:true});
-}
-function escHtml(str) {
-  return String(str).replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;").replace(/"/g,"&quot;");
-}
-function setField(id, val) { const el = document.getElementById(id); if(el) el.value = val; }
-function updateCharCount(el, countId) {
-  const ct = document.getElementById(countId);
-  if (ct) ct.textContent = el.value.length.toLocaleString() + " characters";
-}
-function scrollToApp() { document.getElementById("app").scrollIntoView({behavior:"smooth"}); }
-function showDemoToast() { openDemo(); }
-
-/* ═══════════════════════════════════════════════════════════
-   GUIDED DEMO ENGINE
-   ═══════════════════════════════════════════════════════════ */
-let _demoStep   = 0;
-const DEMO_TOTAL = 10;
-let _demoTimers  = [];
-
-function openDemo() {
-  _demoStep = 0;
-  const ov = document.getElementById("demoOverlay");
-  ov.classList.add("open");
-  document.body.style.overflow = "hidden";
-  buildDemoDots();
-  renderDemoStep(0, "none");
-  document.addEventListener("keydown", demoKeyHandler);
-}
-
-function closeDemo() {
-  const ov = document.getElementById("demoOverlay");
-  ov.classList.remove("open");
-  document.body.style.overflow = "";
-  document.removeEventListener("keydown", demoKeyHandler);
-  _demoTimers.forEach(clearTimeout);
-  _demoTimers = [];
-}
-
-function finishDemo() {
-  closeDemo();
-  // scroll to app
-  document.getElementById("app")?.scrollIntoView({behavior:"smooth"});
-  // pulse the chat tool card
-  const chatCard = document.querySelector('.tool-card[data-panel="chat"]');
-  if (chatCard) {
-    chatCard.style.transition = "box-shadow .3s ease, transform .3s ease";
-    let count = 0;
-    const pulse = setInterval(() => {
-      if (count % 2 === 0) {
-        chatCard.style.boxShadow = "0 0 0 4px rgba(0,176,255,.6)";
-        chatCard.style.transform = "translateX(3px) scale(1.02)";
-      } else {
-        chatCard.style.boxShadow = "";
-        chatCard.style.transform = "";
-      }
-      if (++count >= 6) clearInterval(pulse);
-    }, 340);
-  }
-  setTimeout(() => showToast("Demo complete! Try it yourself 🚀", "success"), 600);
-}
-
-function demoKeyHandler(e) {
-  if (e.key === "Escape")      closeDemo();
-  if (e.key === "ArrowRight")  demoStep(1);
-  if (e.key === "ArrowLeft")   demoStep(-1);
-}
-
-function demoStep(dir) {
-  const next = _demoStep + dir;
-  if (next < 0 || next >= DEMO_TOTAL) return;
-  renderDemoStep(next, dir > 0 ? "left" : "right");
-}
-
-function renderDemoStep(idx, dir) {
-  _demoTimers.forEach(clearTimeout); _demoTimers = [];
-
-  // Update state
-  _demoStep = idx;
-
-  // Move slides
-  const slides = document.getElementById("demoSlides");
-  slides.style.transform = `translateX(-${idx * 100}%)`;
-
-  // Progress bar
-  document.getElementById("demoProgress").style.width = `${((idx + 1) / DEMO_TOTAL) * 100}%`;
-
-  // Step counter
-  document.getElementById("demoStepNum").textContent = idx + 1;
-
-  // Dots
-  document.querySelectorAll(".demo-dot").forEach((d, i) => d.classList.toggle("active", i === idx));
-
-  // Prev/Next buttons
-  const prevBtn = document.getElementById("demoPrevBtn");
-  const nextBtn = document.getElementById("demoNextBtn");
-  prevBtn.style.visibility = idx === 0 ? "hidden" : "visible";
-  if (idx === DEMO_TOTAL - 1) {
-    nextBtn.style.display = "none";
-  } else {
-    nextBtn.style.display = "";
-    nextBtn.innerHTML = idx === DEMO_TOTAL - 2
-      ? 'Finish <i class="fa-solid fa-flag-checkered"></i>'
-      : 'Next <i class="fa-solid fa-arrow-right"></i>';
-  }
-
-  // Trigger step-specific animations
-  _demoTimers.push(setTimeout(() => animateStep(idx), 200));
-}
-
-function buildDemoDots() {
-  const wrap = document.getElementById("demoDots");
-  wrap.innerHTML = "";
-  for (let i = 0; i < DEMO_TOTAL; i++) {
-    const d = document.createElement("span");
-    d.className = "demo-dot" + (i === 0 ? " active" : "");
-    d.title = `Step ${i + 1}`;
-    d.onclick = () => renderDemoStep(i, i > _demoStep ? "left" : "right");
-    wrap.appendChild(d);
-  }
-}
-
-function animateStep(idx) {
-  // Reset all anim-fade elements in this slide
-  const slide = document.getElementById("dslide-" + idx);
-  if (!slide) return;
-  slide.querySelectorAll(".anim-fade").forEach(el => el.classList.remove("visible"));
-
-  if (idx === 1) { // Chat step — show typing then response
-    const typing = document.getElementById("demo-chat-typing");
-    const bubble = document.getElementById("demo-chat-bubble");
-    if (typing && bubble) {
-      typing.style.display = "flex";
-      bubble.style.display = "none";
-      _demoTimers.push(setTimeout(() => {
-        typing.style.display = "none";
-        bubble.style.display = "flex";
-        bubble.style.animation = "bubbleIn .3s ease";
-      }, 1800));
-    }
-  }
-  if (idx === 2) { // Summarize — fade in result
-    _demoTimers.push(setTimeout(() => {
-      document.getElementById("demo-sum-result")?.classList.add("visible");
-    }, 600));
-  }
-  if (idx === 3) { // Citation
-    _demoTimers.push(setTimeout(() => {
-      document.getElementById("demo-cit-result")?.classList.add("visible");
-    }, 600));
-  }
-  if (idx === 4) { // Lit review sections cascade
-    slide.querySelectorAll(".mk-section").forEach((el, i) => {
-      _demoTimers.push(setTimeout(() => el.classList.add("visible"), 300 + i * 180));
-    });
-  }
-  if (idx === 5) { // Hypothesis cards
-    slide.querySelectorAll(".mk-hyp-card").forEach((el, i) => {
-      _demoTimers.push(setTimeout(() => el.classList.add("visible"), 300 + i * 250));
-    });
-  }
-  if (idx === 6) { // Draft report
-    _demoTimers.push(setTimeout(() => {
-      document.getElementById("demo-rep-result")?.classList.add("visible");
-    }, 500));
-  }
-  if (idx === 7) { // Topic explorer sections cascade
-    slide.querySelectorAll(".mk-section").forEach((el, i) => {
-      _demoTimers.push(setTimeout(() => el.classList.add("visible"), 200 + i * 160));
-    });
-  }
-  if (idx === 8) { // Compare
-    _demoTimers.push(setTimeout(() => {
-      document.getElementById("demo-cmp-result")?.classList.add("visible");
-    }, 400));
-  }
-  if (idx === 9) { // Finish — stagger tool grid
-    slide.querySelectorAll(".ft-item").forEach((el, i) => {
-      el.style.opacity = "0";
-      el.style.transform = "scale(.8)";
-      el.style.transition = "all .3s ease";
-      _demoTimers.push(setTimeout(() => {
-        el.style.opacity = "1";
-        el.style.transform = "scale(1)";
-      }, 100 + i * 80));
-    });
-  }
-}
-
-/* ═══════════════════════════════════════════
-   STYLE PILLS
-   ═══════════════════════════════════════════ */
-function initStylePills() {
-  document.querySelectorAll(".style-pill").forEach(pill => {
-    pill.addEventListener("click", () => {
-      pill.closest(".style-pills").querySelectorAll(".style-pill").forEach(p => p.classList.remove("active"));
-      pill.classList.add("active");
-    });
-  });
-}
-
-/* ═══════════════════════════════════════════
-   RIPPLE EFFECT
-   ═══════════════════════════════════════════ */
-function initRipples() {
-  document.querySelectorAll(".ripple").forEach(el => {
-    el.addEventListener("click", function(e) {
-      const rect = this.getBoundingClientRect();
-      const size = Math.max(rect.width, rect.height);
-      const r = document.createElement("span");
-      r.className = "ripple-effect";
-      r.style.cssText = `width:${size}px;height:${size}px;left:${e.clientX-rect.left-size/2}px;top:${e.clientY-rect.top-size/2}px`;
-      this.appendChild(r);
-      setTimeout(() => r.remove(), 600);
-    });
-  });
-}
-
-/* ═══════════════════════════════════════════
-   TYPEWRITER
-   ═══════════════════════════════════════════ */
-function initTypewriter() {
-  const el = document.getElementById("typewriter");
-  if (!el) return;
-  const phrases = [
-    "Summarize scientific papers instantly.",
-    "Generate APA, IEEE, Nature citations.",
-    "Build structured literature reviews.",
-    "Create testable research hypotheses.",
-    "Explore any scientific domain deeply.",
-    "Draft research paper sections in seconds.",
-  ];
-  let pi = 0, ci = 0, deleting = false;
-  function tick() {
-    const phrase = phrases[pi];
-    if (!deleting) {
-      el.textContent = phrase.slice(0, ++ci);
-      if (ci === phrase.length) { deleting = true; setTimeout(tick, 2200); return; }
-    } else {
-      el.textContent = phrase.slice(0, --ci);
-      if (ci === 0) { deleting = false; pi = (pi + 1) % phrases.length; setTimeout(tick, 400); return; }
-    }
-    setTimeout(tick, deleting ? 38 : 58);
-  }
-  setTimeout(tick, 800);
-}
-
-/* ═══════════════════════════════════════════
-   PARTICLE CANVAS
-   ═══════════════════════════════════════════ */
-function initParticles() {
-  const canvas = document.getElementById("particleCanvas");
-  if (!canvas) return;
-  const ctx = canvas.getContext("2d");
-  let W, H, particles = [];
-
-  function resize() {
-    W = canvas.width  = canvas.offsetWidth;
-    H = canvas.height = canvas.offsetHeight;
-  }
-  resize();
-  window.addEventListener("resize", resize, {passive:true});
-
-  const COUNT = 55;
-  for (let i = 0; i < COUNT; i++) {
-    particles.push({
-      x: Math.random() * 1200, y: Math.random() * 800,
-      vx: (Math.random() - .5) * .45,
-      vy: (Math.random() - .5) * .45,
-      r: Math.random() * 2.2 + .8,
-      a: Math.random() * .6 + .2,
-    });
-  }
-
-  function draw() {
-    ctx.clearRect(0, 0, W, H);
-    // draw connections
-    for (let i = 0; i < particles.length; i++) {
-      for (let j = i + 1; j < particles.length; j++) {
-        const dx = particles[i].x - particles[j].x;
-        const dy = particles[i].y - particles[j].y;
-        const dist = Math.sqrt(dx*dx + dy*dy);
-        if (dist < 120) {
-          ctx.beginPath();
-          ctx.moveTo(particles[i].x, particles[i].y);
-          ctx.lineTo(particles[j].x, particles[j].y);
-          ctx.strokeStyle = `rgba(0,176,255,${.18 * (1 - dist/120)})`;
-          ctx.lineWidth = .8;
-          ctx.stroke();
-        }
-      }
-    }
-    // draw dots
-    particles.forEach(p => {
-      ctx.beginPath();
-      ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
-      ctx.fillStyle = `rgba(0,176,255,${p.a})`;
-      ctx.fill();
-      p.x += p.vx; p.y += p.vy;
-      if (p.x < 0 || p.x > W) p.vx *= -1;
-      if (p.y < 0 || p.y > H) p.vy *= -1;
-    });
-    requestAnimationFrame(draw);
-  }
-  draw();
-}
-</script>
+<script src="{{ url_for('static', filename='js/main.js') }}"></script>
+<script>clearChat();</script>
 </body>
 </html>
