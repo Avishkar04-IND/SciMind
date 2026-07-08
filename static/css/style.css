@@ -350,8 +350,9 @@ textarea.field{resize:vertical;min-height:110px;line-height:1.5}
 .result-content strong{color:var(--text);font-weight:600}
 .result-content code{font-family:var(--font-mono);background:var(--bg-sunken);padding:1px 5px;font-size:13px}
 .result-content hr{border:none;border-top:1px solid var(--border);margin:14px 0}
+.result-actions{position:absolute;top:14px;right:14px;display:flex;gap:8px}
 .copy-btn{
-  position:absolute;top:14px;right:14px;display:flex;align-items:center;gap:6px;
+  display:flex;align-items:center;gap:6px;
   font-size:12px;background:transparent;border:1px solid var(--border-strong);color:var(--text-muted);
   padding:6px 10px;
 }
