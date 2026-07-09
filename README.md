@@ -33,7 +33,7 @@
 
 ```bash
 # If using git
-git clone <your-repo-url>
+git clone <repo-url>
 cd SciResearchAgent
 
 # Or just navigate into the SciResearchAgent directory
